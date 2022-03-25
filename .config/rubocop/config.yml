@@ -1,0 +1,23 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+
+Metrics/AbcSize:
+  Max: 54.28
+
+Metrics/CyclomaticComplexity:
+  Max: 13
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/PerceivedComplexity:
+  Max: 14
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

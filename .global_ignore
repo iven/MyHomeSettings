@@ -1,0 +1,49 @@
+# Python
+*.py[co]
+local_settings.py
+
+# C/C++
+*.slo
+*.lo
+*.o
+*.so
+*.so.*
+*.lai
+*.la
+*.a
+
+# Linux
+*~
+*.sw[a-z]
+nohup.out
+
+# Git
+/.git
+
+# Kate
+.*.kate-sw[a-z]
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.un~
+Session.vim
+/.vim
+
+# Ctags
+tags
+TAGS
+
+# Archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.tar.gz
+*.zip
+*.bzip

@@ -1,0 +1,45 @@
+[user]
+  email = ivenvd@gmail.com
+  name = Iven Hsu
+  signingkey = 1325EF94AA15B1FC3C147D3547BD8CF28B080FA5
+[alias]
+  st = status -sb
+  co = checkout
+  ps = push origin --all
+  pl = pull --rebase --tags
+
+  ci = commit -a
+  cia = commit -a --amend
+
+  df = diff
+  dc = diff --cached
+
+  ri = rebase -i
+  rc = rebase --continue
+  ra = rebase --abort
+
+  br = branch
+  tags = tag --list
+
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  who = shortlog -sn
+[color]
+  ui = auto
+[diff]
+  # algorithm = histogram
+  # wordregex = ",|.|=|'|\"|(|)|[^[:space:]()='\".,_]+"
+  # wordregex = "=|'|\"|[^[:space:]()='\".,]+"
+[core]
+  excludesfile = ~/.global_ignore
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  plus-color = "#356054"
+  minus-color = "#503524"
+[push]
+  default = matching
+[gpg]
+  program = gpg2
+[commit]
+  gpgsign = true
