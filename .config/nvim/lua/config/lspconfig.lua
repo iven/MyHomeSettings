@@ -47,3 +47,9 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts.border = opts.border or 'single'
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
+
+-- 输入时实时提示错误
+vim.diagnostic.config {
+  update_in_insert = true,
+}
+
