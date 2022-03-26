@@ -40,11 +40,11 @@ require("packer").startup(function(use)
   -- use {
   --   'jose-elias-alvarez/null-ls.nvim',
   --   requires = 'nvim-lua/plenary.nvim',
-  --   config = function() require('config/null-ls') end,
+  --   config = function() require('plugins.null-ls') end,
   -- }
   use {
     'mhinz/vim-startify',
-    config = function() require('config/startify') end,
+    config = function() require('plugins.startify') end,
   }
   use {
     'nvim-telescope/telescope.nvim',
@@ -53,7 +53,7 @@ require("packer").startup(function(use)
       'kyazdani42/nvim-web-devicons',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     },
-    config = function() require('config.telescope') end,
+    config = function() require('plugins.telescope') end,
     cmd = 'Telescope',
     module = 'telescope',
   }
@@ -66,7 +66,7 @@ require("packer").startup(function(use)
       'p00f/nvim-ts-rainbow',
       'nvim-treesitter/nvim-treesitter-refactor',
     },
-    config = function() require('config.nvim-treesitter') end,
+    config = function() require('plugins.nvim-treesitter') end,
   }
   use {
     'nvim-lualine/lualine.nvim',
@@ -80,11 +80,11 @@ require("packer").startup(function(use)
   }
   use {
     "lukas-reineke/indent-blankline.nvim",
-    config = function() require('config/indent_blankline') end,
+    config = function() require('plugins.indent_blankline') end,
   }
   use {
     "themercorp/themer.lua",
-    config = function() require('config.themer') end,
+    config = function() require('plugins.themer') end,
   }
   use {
     "norcalli/nvim-colorizer.lua",
@@ -97,7 +97,7 @@ require("packer").startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     requires = { 'hrsh7th/cmp-nvim-lsp' },
-    config = function() require('config/lspconfig') end,
+    config = function() require('plugins.lspconfig') end,
   }
   use {
     'hrsh7th/nvim-cmp',
@@ -115,7 +115,7 @@ require("packer").startup(function(use)
       'lukas-reineke/cmp-under-comparator',
       'onsails/lspkind-nvim',
     },
-    config = function() require('config/cmp') end,
+    config = function() require('plugins.cmp') end,
   }
   use {
     'folke/trouble.nvim',
@@ -139,7 +139,7 @@ require("packer").startup(function(use)
   -- 编辑
   use {
     'windwp/nvim-autopairs',
-    config = function() require('config/nvim-autopairs') end,
+    config = function() require('plugins.nvim-autopairs') end,
     event = 'InsertEnter',
   }
   use {
@@ -189,7 +189,7 @@ require("packer").startup(function(use)
   }
   use {
     'aserowy/tmux.nvim',
-    config = function() require('config/tmux') end,
+    config = function() require('plugins.tmux') end,
   }
   use {
     'h-hg/fcitx.nvim',

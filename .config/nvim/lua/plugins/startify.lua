@@ -18,7 +18,7 @@ vim.g.startify_custom_header = {
 }
 vim.g.startify_skiplist = { 'COMMIT_EDITMSG' }
 vim.g.startify_bookmarks = {
-  { c = '~/.config/nvim/lua/plugins.lua' },
+  { c = '~/.config/nvim/init.lua' },
   { z = '~/.config/zsh/.zshrc' },
 }
 vim.g.startify_session_dir = '~/.local/share/nvim/sessions'
