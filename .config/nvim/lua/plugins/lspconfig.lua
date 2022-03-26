@@ -4,18 +4,24 @@ local flags = {
   -- This will be the default in neovim 0.7+
   debounce_text_changes = 150,
 }
+local on_attach = function(client)
+  require("lsp-format").on_attach(client)
+end
 
+require('lsp-format').setup()
 local servers = { 'pyright', 'gopls', 'rust_analyzer' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,
     flags = flags,
+    on_attach = on_attach,
   }
 end
 
 require('lspconfig')['sumneko_lua'].setup {
   capabilities = capabilities,
   flags = flags,
+  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {

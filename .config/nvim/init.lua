@@ -96,7 +96,10 @@ require("packer").startup(function(use)
   -- 语法
   use {
     'neovim/nvim-lspconfig',
-    requires = { 'hrsh7th/cmp-nvim-lsp' },
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'lukas-reineke/lsp-format.nvim',
+    },
     config = function() require('plugins.lspconfig') end,
   }
   use {
