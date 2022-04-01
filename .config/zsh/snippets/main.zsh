@@ -17,5 +17,6 @@ export USE_CCACHE=1
 [[ -d /usr/lib/ccache ]] && PATH=/usr/lib/ccache/bin:$PATH
 [[ -d $GOPATH ]] && PATH=$GOPATH/bin:$PATH
 [[ -d $HOME/bin ]] && PATH=$HOME/bin:$PATH
+[[ -d /opt/homebrew/bin ]] && PATH=/opt/homebrew/bin:$PATH
 typeset -U PATH
 export PATH

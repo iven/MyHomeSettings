@@ -10,7 +10,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 
   -- https://github.com/wbthomason/packer.nvim/issues/750
-  opt.runtimepath = fn.stdpath('data') .. '/site/pack/*/start/*,' .. opt.runtimepath
+  table.insert(opt.runtimepath, 1, fn.stdpath('data') .. '/site/pack/*/start/*')
 end
 
 cmd [[
