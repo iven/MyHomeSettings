@@ -31,7 +31,7 @@ map('n', 'j', 'gj')
 map('n', 'k', 'gk')
 
 -- 分号当作冒号
-map('n', ';', ':')
+map('n', ';', ':', { silent = false })
 
 -- Fast saving with <leader> and w
 map('n', '<leader>w', '<cmd>w<cr>')
