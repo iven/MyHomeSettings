@@ -44,7 +44,7 @@ opt.termguicolors = true              -- Enable 24-bit RGB colors
 opt.inccommand = 'split'              -- 即时显示替换结果
 opt.conceallevel = 0                  -- 禁止 JSON, Markdown 等文件隐藏特定语法相关字符的行为
 opt.list = true
-opt.listchars:append('tab:>-,eol:¬,trail:·,extends:↷,precedes:↶')
+opt.listchars:append('tab:··,trail: ,extends:↷,precedes:↶')
 
 -----------------------------------------------------------
 -- Tabs, indent
