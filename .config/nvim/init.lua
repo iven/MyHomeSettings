@@ -91,6 +91,10 @@ require("packer").startup(function(use)
     config = function() require('colorizer').setup() end,
     opt = true,
   }
+  use {
+    "j-hui/fidget.nvim",
+    config = function() require('fidget').setup() end,
+  }
   use 'ntpeters/vim-better-whitespace'
 
   -- 语法

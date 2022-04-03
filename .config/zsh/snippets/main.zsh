@@ -6,6 +6,7 @@ export PAGER='less -RFXM'
 
 # Go
 export GOPATH="$HOME/Workspace/go"
+export GOPRIVATE="github.com/tidbcloud"
 
 # Python
 export PYTHONIOENCODING=utf-8
