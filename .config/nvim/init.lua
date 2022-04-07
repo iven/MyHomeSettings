@@ -197,6 +197,11 @@ require("packer").startup(function(use)
   use {
     'aserowy/tmux.nvim',
     config = function() require('plugins.tmux') end,
+    disable = true,
+  }
+  use {
+    'knubie/vim-kitty-navigator',
+    run = 'cp ./*.py ~/.config/kitty/',
   }
   use {
     'h-hg/fcitx.nvim',
