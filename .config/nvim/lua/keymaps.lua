@@ -17,6 +17,9 @@ vim.g.mapleader = ','
 -- Neovim shortcuts
 -----------------------------------------------------------
 
+-- 回车选择当前单词
+map('n', '<cr>', 'viw')
+
 -- Clear search highlighting with <leader> and c
 map('n', '<leader><space>', '<cmd>nohl<cr>')
 
