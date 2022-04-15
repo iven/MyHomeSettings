@@ -5,9 +5,9 @@ local cmd = vim.cmd
 local fn = vim.fn
 local opt = vim.opt
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  Packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 
   -- https://github.com/wbthomason/packer.nvim/issues/750
   table.insert(opt.runtimepath, 1, fn.stdpath('data') .. '/site/pack/*/start/*')
@@ -71,7 +71,18 @@ require("packer").startup(function(use)
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function() require('lualine').setup() end,
+    config = function()
+      require('lualine').setup {
+        inactive_sections = {
+          lualine_c = {
+            {
+              'filename',
+              path = 2,
+            },
+          },
+        },
+      }
+    end,
   }
   use {
     'lewis6991/gitsigns.nvim',
