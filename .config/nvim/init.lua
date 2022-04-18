@@ -1,24 +1,13 @@
 require('settings')
 require('keymaps')
 
-local cmd = vim.cmd
-local fn = vim.fn
-local opt = vim.opt
-
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  Packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  Packer_bootstrap = vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 
   -- https://github.com/wbthomason/packer.nvim/issues/750
-  table.insert(opt.runtimepath, 1, fn.stdpath('data') .. '/site/pack/*/start/*')
+  table.insert(vim.opt.runtimepath, 1, vim.fn.stdpath('data') .. '/site/pack/*/start/*')
 end
-
-cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerCompile
-  augroup end
-]]
 
 require("packer").startup(function(use)
   -- make sure to add this line to let packer manage itself
@@ -150,7 +139,13 @@ require("packer").startup(function(use)
   use {
     'kosayoda/nvim-lightbulb',
     config = function()
-      vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        pattern = '*',
+        callback = function()
+          require('nvim-lightbulb').update_lightbulb()
+        end,
+        desc = '对于 Code Action 显示灯泡图标',
+      })
     end,
   }
 

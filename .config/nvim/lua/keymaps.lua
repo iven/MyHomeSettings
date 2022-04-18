@@ -1,96 +1,96 @@
 -----------------------------------------------------------
--- Define keymaps of Neovim and installed plugins.
+-- Neovim shortcuts
 -----------------------------------------------------------
-
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
 
 -- Change leader to a comma
 vim.g.mapleader = ','
 
------------------------------------------------------------
--- Neovim shortcuts
------------------------------------------------------------
-
 -- 回车选择当前单词
-map('n', '<cr>', 'viw')
+vim.keymap.set('n', '<cr>', 'viw')
 
 -- Clear search highlighting with <leader> and c
-map('n', '<leader><space>', '<cmd>nohl<cr>')
+vim.keymap.set('n', '<leader><space>', '<cmd>nohl<cr>')
 
 -- Don't use arrow keys
-map('', '<up>', '<nop>')
-map('', '<down>', '<nop>')
-map('', '<left>', '<nop>')
-map('', '<right>', '<nop>')
+vim.keymap.set('', '<up>', '<nop>')
+vim.keymap.set('', '<down>', '<nop>')
+vim.keymap.set('', '<left>', '<nop>')
+vim.keymap.set('', '<right>', '<nop>')
 
 -- 折行算作一行
-map('n', 'j', 'gj')
-map('n', 'k', 'gk')
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
 
 -- 分号当作冒号
-map('n', ';', ':', { silent = false })
+vim.keymap.set('n', ';', ':')
 
 -- Fast saving with <leader> and w
-map('n', '<leader>w', '<cmd>w<cr>')
-map('n', '<leader>W', '<cmd>SudoWrite<cr>')
+vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
+vim.keymap.set('n', '<leader>W', '<cmd>SudoWrite<cr>')
 
 -- Move around splits using Ctrl + {h,j,k,l}
 -- tmux.nvim 已经提供此功能
--- map('n', '<C-h>', '<C-w>h')
--- map('n', '<C-j>', '<C-w>j')
--- map('n', '<C-k>', '<C-w>k')
--- map('n', '<C-l>', '<C-w>l')
+-- vim.keymap.set('n', '<C-h>', '<C-w>h')
+-- vim.keymap.set('n', '<C-j>', '<C-w>j')
+-- vim.keymap.set('n', '<C-k>', '<C-w>k')
+-- vim.keymap.set('n', '<C-l>', '<C-w>l')
 
 -- Close all windows and exit from Neovim
-map('n', '<leader>q', '<cmd>qa!<cr>')
+vim.keymap.set('n', '<leader>q', '<cmd>qa!<cr>')
 
 -- 快速编辑和重载 init.lua
-map('n', '<leader>s', '<cmd>runtime init.lua<cr>')
-map('n', '<leader>e', '<cmd>e ~/.config/nvim/init.lua<cr>')
+vim.keymap.set('n', '<leader>s', '<cmd>runtime init.lua<cr>')
+vim.keymap.set('n', '<leader>e', '<cmd>e ~/.config/nvim/init.lua<cr>')
+
+-- 防止误触
+vim.keymap.set('n', 'q:', '<esc>')
+vim.keymap.set({ 'n', 'i' }, '<F1>', '<esc>')
 
 -----------------------------------------------------------
 -- Applications and Plugins shortcuts
 -----------------------------------------------------------
 
 -- Hop
-map('n', 'f', "<cmd>lua require('hop').hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
-map('n', 'F', "<cmd>lua require('hop').hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>")
-map('o', 'f', "<cmd>lua require('hop').hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
-map('o', 'F', "<cmd>lua require('hop').hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>")
-map('n', '<leader><leader>c', "<cmd>lua require('hop').hint_char2()<cr>")
-map('n', '<leader><leader>w', "<cmd>lua require('hop').hint_words()<cr>")
+vim.keymap.set({ 'n', 'o' }, 'f', function()
+  require('hop').hint_char1({
+    direction = require 'hop.hint'.HintDirection.AFTER_CURSOR,
+    current_line_only = true,
+  })
+end)
+vim.keymap.set({ 'n', 'o' }, 'F', function()
+  require('hop').hint_char1({
+    direction = require 'hop.hint'.HintDirection.BEFORE_CURSOR,
+    current_line_only = true,
+  })
+end)
+vim.keymap.set('n', '<leader><leader>c', function() require('hop').hint_char1() end)
+vim.keymap.set('n', '<leader><leader>w', function() require('hop').hint_words() end)
 
 -- Language Server
-map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-map('n', 'gd', "<cmd>lua require('trouble').toggle({ mode = 'lsp_definitions' })<cr>")
-map('n', 'gD', "<cmd>lua require('trouble').toggle({ mode = 'lsp_type_definitions' })<cr>")
-map('n', 'gr', "<cmd>lua require('trouble').toggle({ mode = 'lsp_references' })<cr>")
-map('n', 'gi', "<cmd>lua require('trouble').toggle({ mode = 'lsp_implementations' })<cr>")
+vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
+vim.keymap.set('n', 'gd', function() require('trouble').toggle({ mode = 'lsp_definitions' }) end)
+vim.keymap.set('n', 'gD', function() require('trouble').toggle({ mode = 'lsp_type_definitions' }) end)
+vim.keymap.set('n', 'gr', function() require('trouble').toggle({ mode = 'lsp_references' }) end)
+vim.keymap.set('n', 'gi', function() require('trouble').toggle({ mode = 'lsp_implementations' }) end)
 
-map('n', '<leader>ca', "<cmd>lua require('telescope.builtin').lsp_code_actions()<cr>")
-map('n', '<leader>F', '<cmd>lua vim.lsp.buf.formatting()<cr>')
-map('n', '<leader>R', '<cmd>lua vim.lsp.buf.rename()<cr>')
+vim.keymap.set('n', '<leader>ca', function() require('telescope.builtin').lsp_code_actions() end)
+vim.keymap.set('n', '<leader>F', function() vim.lsp.buf.formatting() end)
+vim.keymap.set('n', '<leader>R', function() vim.lsp.buf.rename() end)
 
-map('n', '<leader>d', "<cmd>lua require('trouble').toggle({ mode = 'document_diagnostics' })<cr>")
-map('n', '<leader>D', "<cmd>lua require('trouble').toggle({ mode = 'workspace_diagnostics' })<cr>")
-map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+vim.keymap.set('n', '<leader>d', function() require('trouble').toggle({ mode = 'document_diagnostics' }) end)
+vim.keymap.set('n', '<leader>D', function() require('trouble').toggle({ mode = 'workspace_diagnostics' }) end)
+vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end)
+vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end)
 
-map('n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>')
-map('n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>')
-map('n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>')
+vim.keymap.set('n', 'gwa', function() vim.lsp.buf.add_workspace_folder() end)
+vim.keymap.set('n', 'gwr', function() vim.lsp.buf.remove_workspace_folder() end)
+vim.keymap.set('n', 'gwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
 
 -- Telescope
-map('n', '<C-p>', "<cmd>lua require('telescope.builtin').git_files()<cr>")
-map('n', '<leader>f', "<cmd>lua require('telescope.builtin').find_files()<cr>")
-map('n', '<leader>a', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
-map('n', '<leader>t', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>")
+vim.keymap.set('n', '<C-p>', function() require('telescope.builtin').git_files() end)
+vim.keymap.set('n', '<leader>f', function() require('telescope.builtin').find_files() end)
+vim.keymap.set('n', '<leader>a', function() require('telescope.builtin').live_grep() end)
+vim.keymap.set('n', '<leader>t', function() require('telescope.builtin').lsp_document_symbols() end)
 
 -- Mundo
-map('n', '<leader>u', '<cmd>MundoToggle<cr>')
+vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')

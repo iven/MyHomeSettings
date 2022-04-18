@@ -68,32 +68,32 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = cmp.config.sources(
-  {
-    { name = 'cmp_tabnine' },
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lsp_signature_help' },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
-    { name = 'nvim_lua' },
-    { name = 'path' },
-  },
-  {
     {
-      name = 'buffer',
-      option = {
-        -- 从当前可见的 Buffer 进行补全（默认只从当前 Buffer 补全）
-        get_bufnrs = function()
-          local bufs = {}
-          for _, win in ipairs(vim.api.nvim_list_wins()) do
-            bufs[vim.api.nvim_win_get_buf(win)] = true
-          end
-          return vim.tbl_keys(bufs)
-        end,
-      },
+      { name = 'cmp_tabnine' },
+      { name = 'nvim_lsp' },
+      { name = 'nvim_lsp_signature_help' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+      { name = 'nvim_lua' },
+      { name = 'path' },
     },
-  }
+    {
+      {
+        name = 'buffer',
+        option = {
+          -- 从当前可见的 Buffer 进行补全（默认只从当前 Buffer 补全）
+          get_bufnrs = function()
+            local bufs = {}
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              bufs[vim.api.nvim_win_get_buf(win)] = true
+            end
+            return vim.tbl_keys(bufs)
+          end,
+        },
+      },
+    }
   ),
   sorting = {
     comparators = {

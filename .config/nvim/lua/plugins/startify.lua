@@ -46,6 +46,11 @@ vim.g.startify_lists = {
   -- ['   当前目录 ['.getcwd().']：'], 'dir',
 }
 
-vim.g.startify_custom_footer = {'', "   请帮助使用这台电脑的可怜儿童！", ''}
+vim.g.startify_custom_footer = { '', "   请帮助使用这台电脑的可怜儿童！", '' }
 
-vim.cmd [[autocmd User Startified setlocal cursorline]]
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'Startified',
+  callback = function()
+    vim.opt_local.cursorline = true
+  end
+})
