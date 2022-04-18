@@ -68,8 +68,8 @@ vim.keymap.set('n', '<leader><leader>w', function() require('hop').hint_words() 
 
 -- Language Server
 vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
-vim.keymap.set('n', 'gd', function() require('trouble').toggle({ mode = 'lsp_definitions' }) end)
-vim.keymap.set('n', 'gD', function() require('trouble').toggle({ mode = 'lsp_type_definitions' }) end)
+vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end)
+vim.keymap.set('n', 'gD', function() vim.lsp.buf.type_definition() end)
 vim.keymap.set('n', 'gr', function() require('trouble').toggle({ mode = 'lsp_references' }) end)
 vim.keymap.set('n', 'gi', function() require('trouble').toggle({ mode = 'lsp_implementations' }) end)
 
