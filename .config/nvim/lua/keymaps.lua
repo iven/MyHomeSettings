@@ -73,7 +73,7 @@ vim.keymap.set('n', 'gD', function() vim.lsp.buf.type_definition() end)
 vim.keymap.set('n', 'gr', function() require('trouble').toggle({ mode = 'lsp_references' }) end)
 vim.keymap.set('n', 'gi', function() require('trouble').toggle({ mode = 'lsp_implementations' }) end)
 
-vim.keymap.set('n', '<leader>ca', function() require('telescope.builtin').lsp_code_actions() end)
+vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end)
 vim.keymap.set('n', '<leader>F', function() vim.lsp.buf.formatting() end)
 vim.keymap.set('n', '<leader>R', function() vim.lsp.buf.rename() end)
 

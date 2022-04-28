@@ -40,11 +40,10 @@ require("packer").startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons',
+      'nvim-telescope/telescope-ui-select.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     },
     config = function() require('plugins.telescope') end,
-    cmd = 'Telescope',
-    module = 'telescope',
   }
 
   -- 外观
