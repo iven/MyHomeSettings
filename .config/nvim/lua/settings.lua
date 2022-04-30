@@ -125,3 +125,9 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   desc = '跳转到上次编辑位置',
   group = 'user_config',
 })
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = 'init.lua',
+  command = [[source <afile> | PackerCompile]],
+  desc = '自动重载配置',
+})

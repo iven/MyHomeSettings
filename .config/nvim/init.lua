@@ -25,12 +25,6 @@ require("packer").startup(function(use)
       vim.g.cursorhold_updatetime = 100
     end,
   }
-  -- TODO: 添加一些格式化工具
-  -- use {
-  --   'jose-elias-alvarez/null-ls.nvim',
-  --   requires = 'nvim-lua/plenary.nvim',
-  --   config = function() require('plugins.null-ls') end,
-  -- }
   use {
     'mhinz/vim-startify',
     config = function() require('plugins.startify') end,
@@ -102,6 +96,7 @@ require("packer").startup(function(use)
     requires = {
       'hrsh7th/cmp-nvim-lsp',
       'lukas-reineke/lsp-format.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
     },
     config = function() require('plugins.lspconfig') end,
   }
