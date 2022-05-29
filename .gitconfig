@@ -1,7 +1,7 @@
 [user]
   email = ivenvd@gmail.com
   name = Iven Hsu
-  signingkey = 0D4E54A797EF0597
+  signingkey = D829E4EB662B22F8
 [alias]
   st = status -sb
   co = checkout
