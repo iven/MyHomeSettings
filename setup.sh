@@ -15,4 +15,9 @@ ln -s ${PWD}/.config/nvim ~/.config/
 ln -s ${PWD}/.config/zsh ~/.config/
 
 mkdir -p ~/.ssh/
+chmod 700 ~/.ssh/
 ln -s ${PWD}/.ssh/config ~/.ssh/
+
+mkdir -p ~/.gnupg/
+chmod 700 ~/.gnupg/
+ln -s ${PWD}/.gnupg/* ~/.gnupg/
