@@ -165,8 +165,9 @@ require("packer").startup(function(use)
     config = function() require('nvim_comment').setup() end,
   }
   use {
-    'tpope/vim-rsi',
+    'linty-org/readline.nvim',
     event = 'InsertEnter',
+    config = function() require('plugins.readline') end,
   }
   use {
     'tpope/vim-abolish',
