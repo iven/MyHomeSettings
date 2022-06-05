@@ -25,6 +25,12 @@ fi
 
 source $ZDOTDIR/zinit/bin/zinit.zsh
 
+# ==== 加载自定义配置 ====
+
+for i in $ZDOTDIR/snippets/*.zsh; do
+  source $i
+done
+
 # ==== 加载插件 ====
 
 # 加载 Annexes
@@ -90,12 +96,6 @@ zinit wait lucid for \
   # as'command' atclone'rm -f ^(rgg|agv)' atload'alias s=rgg; alias F=agv' \
   #   lilydjwg/search-and-view \
   # Aloxaf/fzf-tab \
-
-# ==== 加载自定义配置 ====
-
-for i in $ZDOTDIR/snippets/*.zsh; do
-  source $i
-done
 
 # ==== 加载主题 ====
 
