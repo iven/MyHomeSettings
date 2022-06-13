@@ -94,3 +94,6 @@ vim.keymap.set('n', '<leader>t', function() require('telescope.builtin').lsp_doc
 
 -- Mundo
 vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
+
+-- Themer
+vim.keymap.set('n', '<C-t>', '<cmd>SCROLLCOLOR<cr>')

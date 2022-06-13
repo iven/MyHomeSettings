@@ -1,6 +1,8 @@
 # Common
 alias pg='pgrep -lf'
 alias f='fd'
+alias tree='ls --tree'
+alias vimdiff='nvim -d'
 
 # yay
 alias y='yay'
@@ -15,3 +17,6 @@ alias yu='y -U'
 
 # zinit
 alias ziclean='zi delete --clean -y && zi cclear'
+
+# aws
+alias awslogin='aws sso login --profile=sso'
