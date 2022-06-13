@@ -88,6 +88,7 @@ require("packer").startup(function(use)
     "j-hui/fidget.nvim",
     config = function() require('fidget').setup() end,
   }
+  use 'xiyaowong/virtcolumn.nvim'
   use 'ntpeters/vim-better-whitespace'
 
   -- 语法
