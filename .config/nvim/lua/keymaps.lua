@@ -11,6 +11,9 @@ vim.keymap.set('n', '<cr>', 'viw')
 -- Clear search highlighting with <leader> and c
 vim.keymap.set('n', '<leader><space>', '<cmd>nohl<cr>')
 
+-- 空格键打开或者关闭折叠
+vim.keymap.set('n', '<space>', 'za')
+
 -- Don't use arrow keys
 vim.keymap.set('', '<up>', '<nop>')
 vim.keymap.set('', '<down>', '<nop>')
