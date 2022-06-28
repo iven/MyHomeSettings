@@ -15,13 +15,14 @@ null_ls.setup {
   sources = {
     null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.prettier,
     null_ls.builtins.diagnostics.golangci_lint,
   },
   debug = true,
   on_attach = on_attach,
 }
 
-local servers = { 'pyright', 'gopls', 'tsserver', 'rust_analyzer' }
+local servers = { 'pyright', 'gopls', 'rust_analyzer' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,
