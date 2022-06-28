@@ -35,11 +35,6 @@ require("nvim-treesitter.configs").setup {
   rainbow = {
     enable = true,
     extended_mode = true,
-  },
-  refactor = {
-    highlight_definitions = {
-      enable = true,
-      clear_on_cursor_move = false,
-    },
+    max_file_lines = 5000,
   },
 }

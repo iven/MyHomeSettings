@@ -49,7 +49,6 @@ require("packer").startup(function(use)
     run = ':TSUpdate',
     requires = {
       'p00f/nvim-ts-rainbow',
-      'nvim-treesitter/nvim-treesitter-refactor',
     },
     config = function() require('plugins.nvim-treesitter') end,
   }
@@ -101,6 +100,7 @@ require("packer").startup(function(use)
       'hrsh7th/cmp-nvim-lsp',
       'lukas-reineke/lsp-format.nvim',
       'jose-elias-alvarez/null-ls.nvim',
+      'RRethy/vim-illuminate',
     },
     config = function() require('plugins.lspconfig') end,
   }

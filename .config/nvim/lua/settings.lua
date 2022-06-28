@@ -98,6 +98,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank { higroup = "Search", timeout = 1200 }
   end,
   desc = '复制文本时对其进行高亮',
+  group = 'user_config',
 })
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -130,4 +131,12 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = 'init.lua',
   command = [[source <afile> | PackerCompile]],
   desc = '自动重载配置',
+  group = 'user_config',
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  pattern = '*',
+  command = [[hi LspReferenceText cterm=bold ctermbg=237 guibg=#3e614f]],
+  desc = '强调当前变量',
+  group = 'user_config',
 })

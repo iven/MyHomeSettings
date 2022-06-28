@@ -1,15 +1,13 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
 local null_ls = require("null-ls")
+local illuminate = require('illuminate')
 
 local runtime_path = vim.split(package.path, ';')
 local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local flags = {
-  -- This will be the default in neovim 0.7+
-  debounce_text_changes = 150,
-}
 local on_attach = function(client)
   lsp_format.on_attach(client)
+  illuminate.on_attach(client)
 end
 
 lsp_format.setup()
@@ -27,14 +25,12 @@ local servers = { 'pyright', 'gopls', 'tsserver', 'rust_analyzer' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,
-    flags = flags,
     on_attach = on_attach,
   }
 end
 
 require('lspconfig')['sumneko_lua'].setup {
   capabilities = capabilities,
-  flags = flags,
   on_attach = on_attach,
   settings = {
     Lua = {
