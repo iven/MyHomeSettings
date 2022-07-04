@@ -101,6 +101,7 @@ require("packer").startup(function(use)
       'lukas-reineke/lsp-format.nvim',
       'jose-elias-alvarez/null-ls.nvim',
       'RRethy/vim-illuminate',
+      'ray-x/lsp_signature.nvim',
     },
     config = function() require('plugins.lspconfig') end,
   }
@@ -108,7 +109,6 @@ require("packer").startup(function(use)
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
       { 'tzachar/cmp-tabnine', run = './install.sh' },
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
@@ -187,7 +187,8 @@ require("packer").startup(function(use)
   use {
     'simnalamburt/vim-mundo',
     config = function()
-      vim.g.mundo_right = 1
+      -- https://github.com/simnalamburt/vim-mundo/issues/87
+      -- vim.g.mundo_right = 1
       vim.g.mundo_close_on_revert = 1
       vim.g.mundo_prefer_python3 = 1
     end,

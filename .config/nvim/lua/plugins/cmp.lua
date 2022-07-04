@@ -63,7 +63,6 @@ cmp.setup {
     {
       { name = 'cmp_tabnine' },
       { name = 'nvim_lsp' },
-      { name = 'nvim_lsp_signature_help' },
       -- { name = 'vsnip' }, -- For vsnip users.
       { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
@@ -72,20 +71,20 @@ cmp.setup {
       { name = 'path' },
     },
     {
-    {
-      name = 'buffer',
-      option = {
-        -- 从当前可见的 Buffer 进行补全（默认只从当前 Buffer 补全）
-        get_bufnrs = function()
-          local bufs = {}
-          for _, win in ipairs(vim.api.nvim_list_wins()) do
-            bufs[vim.api.nvim_win_get_buf(win)] = true
-          end
-          return vim.tbl_keys(bufs)
-        end,
+      {
+        name = 'buffer',
+        option = {
+          -- 从当前可见的 Buffer 进行补全（默认只从当前 Buffer 补全）
+          get_bufnrs = function()
+            local bufs = {}
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              bufs[vim.api.nvim_win_get_buf(win)] = true
+            end
+            return vim.tbl_keys(bufs)
+          end,
+        },
       },
-    },
-  }
+    }
   ),
   sorting = {
     comparators = {
@@ -105,7 +104,6 @@ cmp.setup {
       menu = ({
         cmp_tabnine = '[TabNine]',
         nvim_lsp = '[LSP]',
-        nvim_lsp_signature_help = '[Signature]',
         luasnip = '[LuaSnip]',
         nvim_lua = '[Lua]',
         path = '[Path]',
