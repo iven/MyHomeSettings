@@ -148,3 +148,11 @@ vim.api.nvim_create_autocmd('CursorHold', {
   desc = '自动显示诊断错误信息',
   group = 'user_config',
 })
+vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+  pattern = '*',
+  callback = function()
+    require('nvim-lightbulb').update_lightbulb()
+  end,
+  desc = '对于 Code Action 显示灯泡图标',
+  group = 'user_config',
+})

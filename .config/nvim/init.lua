@@ -134,18 +134,7 @@ require("packer").startup(function(use)
     cmd = 'Trouble',
     module = 'trouble',
   }
-  use {
-    'kosayoda/nvim-lightbulb',
-    config = function()
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-        pattern = '*',
-        callback = function()
-          require('nvim-lightbulb').update_lightbulb()
-        end,
-        desc = '对于 Code Action 显示灯泡图标',
-      })
-    end,
-  }
+  use 'kosayoda/nvim-lightbulb'
 
   -- 编辑
   use {
