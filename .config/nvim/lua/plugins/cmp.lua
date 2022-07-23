@@ -14,6 +14,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 tabnine:setup {
   max_num_results = 2,
+  show_prediction_strength = true,
 }
 
 cmp.setup {
@@ -27,6 +28,10 @@ cmp.setup {
       -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
       -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
+  },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert {
     -- ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.

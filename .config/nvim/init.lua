@@ -97,11 +97,18 @@ require("packer").startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     requires = {
+      -- 启用基于 LSP 的自动补全
       'hrsh7th/cmp-nvim-lsp',
+      -- 保存时自动格式化文件
       'lukas-reineke/lsp-format.nvim',
+      -- 将 Linter 等伪装成 LSP Server
       'jose-elias-alvarez/null-ls.nvim',
+      -- 高亮光标下的变量及其定义和使用
       'RRethy/vim-illuminate',
+      -- 实时显示函数参数定义
       'ray-x/lsp_signature.nvim',
+      -- 在多行中显示诊断信息
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     },
     config = function() require('plugins.lspconfig') end,
   }
@@ -118,6 +125,7 @@ require("packer").startup(function(use)
       'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets',
       'lukas-reineke/cmp-under-comparator',
+      -- 在补全菜单显示类似 VSCode 的图标
       'onsails/lspkind-nvim',
     },
     config = function() require('plugins.cmp') end,
