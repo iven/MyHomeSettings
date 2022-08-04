@@ -27,6 +27,9 @@ vim.keymap.set('n', 'k', 'gk')
 -- 分号当作冒号
 vim.keymap.set('n', ';', ':')
 
+-- Visual 模式粘贴时，不覆盖剪贴板
+vim.keymap.set('v', 'p', '"_dP')
+
 -- Fast saving with <leader> and w
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
 vim.keymap.set('n', '<leader>W', '<cmd>SudoWrite<cr>')
