@@ -140,14 +140,14 @@ vim.api.nvim_create_autocmd('VimEnter', {
   desc = '强调当前变量',
   group = 'user_config',
 })
--- vim.api.nvim_create_autocmd('CursorHold', {
---   pattern = '*',
---   callback = function()
---     vim.diagnostic.open_float()
---   end,
---   desc = '自动显示诊断错误信息',
---   group = 'user_config',
--- })
+vim.api.nvim_create_autocmd('CursorHold', {
+  pattern = '*',
+  callback = function()
+    vim.diagnostic.open_float()
+  end,
+  desc = '自动显示诊断错误信息',
+  group = 'user_config',
+})
 vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
   pattern = '*',
   callback = function()
