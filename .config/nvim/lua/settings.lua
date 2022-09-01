@@ -136,10 +136,11 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 vim.api.nvim_create_autocmd('VimEnter', {
   pattern = '*',
-  command = [[hi LspReferenceText cterm=bold ctermbg=237 guibg=#3e614f]],
+  command = [[hi IlluminatedWordText cterm=bold ctermbg=237 guibg=#3e614f gui=none]],
   desc = '强调当前变量',
   group = 'user_config',
 })
+
 vim.api.nvim_create_autocmd('CursorHold', {
   pattern = '*',
   callback = function()
@@ -148,6 +149,7 @@ vim.api.nvim_create_autocmd('CursorHold', {
   desc = '自动显示诊断错误信息',
   group = 'user_config',
 })
+
 vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
   pattern = '*',
   callback = function()

@@ -1,7 +1,6 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
 local null_ls = require("null-ls")
-local illuminate = require('illuminate')
 local lsp_signature = require('lsp_signature')
 local lsp_lines = require('lsp_lines')
 
@@ -9,7 +8,6 @@ local runtime_path = vim.split(package.path, ';')
 local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local on_attach = function(client)
   lsp_format.on_attach(client)
-  illuminate.on_attach(client)
   lsp_signature.on_attach()
 end
 
