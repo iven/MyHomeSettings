@@ -72,10 +72,6 @@ cmp.setup {
       { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
-      { name = 'nvim_lua' },
-      { name = 'path' },
-    },
-    {
       {
         name = 'buffer',
         option = {
@@ -89,6 +85,8 @@ cmp.setup {
           end,
         },
       },
+      { name = 'nvim_lua' },
+      { name = 'path' },
     }
   ),
   sorting = {

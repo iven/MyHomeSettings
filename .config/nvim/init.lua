@@ -54,7 +54,9 @@ require("packer").startup(function(use)
   }
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    requires = {
+      { 'kyazdani42/nvim-web-devicons', opt = true },
+    },
     config = function()
       require('lualine').setup {
         inactive_sections = {
@@ -84,7 +86,6 @@ require("packer").startup(function(use)
   use {
     "NvChad/nvim-colorizer.lua",
     config = function() require('colorizer').setup() end,
-    opt = true,
   }
   use {
     "j-hui/fidget.nvim",
