@@ -108,8 +108,6 @@ require("packer").startup(function(use)
       'RRethy/vim-illuminate',
       -- 实时显示函数参数定义
       'ray-x/lsp_signature.nvim',
-      -- 在多行中显示诊断信息
-      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     },
     config = function() require('plugins.lspconfig') end,
   }

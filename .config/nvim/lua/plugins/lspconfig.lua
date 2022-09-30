@@ -2,7 +2,6 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
 local null_ls = require("null-ls")
 local lsp_signature = require('lsp_signature')
-local lsp_lines = require('lsp_lines')
 
 local runtime_path = vim.split(package.path, ';')
 local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -11,7 +10,6 @@ local on_attach = function(client)
   lsp_signature.on_attach()
 end
 
-lsp_lines.setup()
 lsp_format.setup()
 null_ls.setup {
   sources = {
@@ -70,5 +68,4 @@ end
 -- 输入时实时提示错误
 vim.diagnostic.config {
   update_in_insert = true,
-  virtual_text = false,
 }
