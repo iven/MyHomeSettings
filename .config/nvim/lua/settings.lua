@@ -153,7 +153,10 @@ vim.api.nvim_create_autocmd('CursorHold', {
 vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
   pattern = '*',
   callback = function()
-    require('nvim-lightbulb').update_lightbulb()
+    local exists, lightbulb = pcall(require, "nvim-lightbulb")
+    if exists then
+      lightbulb.update_lightbulb()
+    end
   end,
   desc = '对于 Code Action 显示灯泡图标',
   group = 'user_config',

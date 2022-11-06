@@ -4,7 +4,7 @@ local null_ls = require("null-ls")
 local lsp_signature = require('lsp_signature')
 
 local runtime_path = vim.split(package.path, ';')
-local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local on_attach = function(client)
   lsp_format.on_attach(client)
   lsp_signature.on_attach()
