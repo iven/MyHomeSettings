@@ -44,7 +44,7 @@ zinit wait silent for OMZP::ssh-agent
 
 zinit wait lucid from'gh-r' for \
   sbin'fzf' \
-    junegunn/fzf-bin \
+    junegunn/fzf \
   sbin'**/fd' \
     @sharkdp/fd \
   sbin'**/bat' \
