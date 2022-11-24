@@ -76,6 +76,13 @@ require("packer").startup(function(use)
     config = function() require('gitsigns').setup() end,
   }
   use {
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require("scrollbar").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+    end
+  }
+  use {
     "lukas-reineke/indent-blankline.nvim",
     config = function() require('plugins.indent_blankline') end,
   }

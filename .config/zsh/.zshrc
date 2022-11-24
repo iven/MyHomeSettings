@@ -43,8 +43,6 @@ zinit light zdharma-continuum/zinit-annex-bin-gem-node
 zinit wait silent for OMZP::ssh-agent
 
 zinit wait lucid from'gh-r' for \
-  sbin'fzf' \
-    junegunn/fzf \
   sbin'**/fd' \
     @sharkdp/fd \
   sbin'**/bat' \
@@ -68,7 +66,6 @@ zinit wait lucid for \
   OMZL::misc.zsh \
   OMZL::theme-and-appearance.zsh \
   OMZP::colored-man-pages \
-  OMZP::fzf \
   OMZP::git \
   DarrinTisdale/zsh-aliases-exa \
   agkozak/zsh-z \

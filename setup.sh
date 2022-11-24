@@ -2,7 +2,6 @@
 
 mkdir -p ~/.config/
 ln -s ${PWD}/.gitconfig ~/
-ln -s ${PWD}/.gitignore ~/
 ln -s ${PWD}/.global_ignore ~/
 ln -s ${PWD}/.tmux.conf ~/
 ln -s ${PWD}/.tmuxline.conf ~/
