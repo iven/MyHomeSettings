@@ -12,6 +12,7 @@ fishd.*
 /.config/nvim/undo/
 /.config/nvim/LanguageClient.log
 /.config/nvim/.netrwhist
+/.config/nvim/.luarc.json
 /.config/zsh/zinit/
 /.config/zsh/.z
 /.config/zsh/.zsh_history

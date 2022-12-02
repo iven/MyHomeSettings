@@ -92,11 +92,15 @@ require("packer").startup(function(use)
   }
   use {
     "NvChad/nvim-colorizer.lua",
-    config = function() require('colorizer').setup() end,
+    config = function() require('colorizer').setup({}) end,
   }
   use {
     "j-hui/fidget.nvim",
     config = function() require('fidget').setup() end,
+  }
+  use {
+    'prichrd/netrw.nvim',
+    config = function() require 'netrw'.setup({}) end
   }
   use 'xiyaowong/virtcolumn.nvim'
   use 'ntpeters/vim-better-whitespace'
