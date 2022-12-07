@@ -18,6 +18,7 @@ export USE_CCACHE=1
 [[ -d /usr/lib/ccache ]] && PATH=/usr/lib/ccache/bin:$PATH
 [[ -d $GOPATH ]] && PATH=$GOPATH/bin:$PATH
 [[ -d $HOME/bin ]] && PATH=$HOME/bin:$PATH
+[[ -d $HOME/.local/bin ]] && PATH=$HOME/.local/bin:$PATH
 [[ -d /opt/homebrew/bin ]] && PATH=/opt/homebrew/bin:$PATH
 [[ -d ${HOME}/.krew/bin ]] && PATH=$PATH:${HOME}/.krew/bin
 typeset -U PATH

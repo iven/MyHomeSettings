@@ -22,13 +22,19 @@ null_ls.setup {
   on_attach = on_attach,
 }
 
-local servers = { 'clangd', 'cmake', 'pyright', 'gopls', 'rust_analyzer', 'bufls' }
+local servers = { 'cmake', 'pyright', 'gopls', 'rust_analyzer', 'bufls' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,
     on_attach = on_attach,
   }
 end
+
+require('lspconfig')['clangd'].setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  cmd = { "clangd", "--pch-storage=memory" },
+}
 
 require('lspconfig')['sumneko_lua'].setup {
   capabilities = capabilities,
