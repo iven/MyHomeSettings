@@ -175,6 +175,16 @@ require("packer").startup(function(use)
     'terrortylor/nvim-comment',
     config = function() require('nvim_comment').setup() end,
   }
+  use({
+    'Wansmer/treesj',
+    requires = { 'nvim-treesitter' },
+    config = function()
+      require('treesj').setup({
+        use_default_keymaps = false,
+        max_join_length = 1024,
+      })
+    end,
+  })
   use {
     'linty-org/readline.nvim',
     event = 'InsertEnter',
