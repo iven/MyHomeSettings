@@ -23,4 +23,4 @@ alias awslogin='aws sso login --profile=sso'
 
 # kitty
 # https://wiki.archlinux.org/title/Kitty#Terminal_issues_with_SSH
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+[ "$TERM" = "xterm-kitty" ] && [ -z "$SSH_TTY" ] && alias ssh="kitty +kitten ssh"
