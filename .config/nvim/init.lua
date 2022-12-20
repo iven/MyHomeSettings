@@ -39,6 +39,7 @@ require("packer").startup(function(use)
       'kyazdani42/nvim-web-devicons',
       'nvim-telescope/telescope-ui-select.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      'debugloop/telescope-undo.nvim',
     },
     config = function() require('plugins.telescope') end,
   }
@@ -200,16 +201,6 @@ require("packer").startup(function(use)
   use {
     'dinhhuy258/git.nvim',
     config = function() require('git').setup() end,
-  }
-  use {
-    'simnalamburt/vim-mundo',
-    config = function()
-      -- https://github.com/simnalamburt/vim-mundo/issues/87
-      -- vim.g.mundo_right = 1
-      vim.g.mundo_close_on_revert = 1
-      vim.g.mundo_prefer_python3 = 1
-    end,
-    cmd = 'MundoToggle',
   }
   use {
     'tpope/vim-eunuch',

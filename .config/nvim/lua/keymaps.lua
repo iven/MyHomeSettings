@@ -97,14 +97,12 @@ vim.keymap.set('n', '<C-p>', function() require('telescope.builtin').git_files()
 vim.keymap.set('n', '<leader>f', function() require('telescope.builtin').find_files() end)
 vim.keymap.set('n', '<leader>a', function() require('telescope.builtin').live_grep() end)
 vim.keymap.set('n', '<leader>t', function() require('telescope.builtin').lsp_document_symbols() end)
+vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>')
 
 -- treesj
 vim.keymap.set('n', '<leader>jm', function() require('treesj').toggle() end)
 vim.keymap.set('n', '<leader>js', function() require('treesj').split() end)
 vim.keymap.set('n', '<leader>jj', function() require('treesj').join() end)
-
--- Mundo
-vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 
 -- Themer
 vim.keymap.set('n', '<C-t>', '<cmd>SCROLLCOLOR<cr>')
