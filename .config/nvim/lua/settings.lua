@@ -127,13 +127,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   group = 'user_config',
 })
 
-vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = 'init.lua',
-  command = [[source <afile> | PackerCompile]],
-  desc = '自动重载配置',
-  group = 'user_config',
-})
-
 vim.api.nvim_create_autocmd('VimEnter', {
   pattern = '*',
   command = [[hi IlluminatedWordText cterm=bold ctermbg=237 guibg=#3e614f gui=none]],

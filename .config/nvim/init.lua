@@ -1,62 +1,75 @@
 require('settings')
 require('keymaps')
 
-local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  Packer_bootstrap = vim.fn.system {
-    'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-    install_path,
-  }
-
-  -- https://github.com/wbthomason/packer.nvim/issues/750
-  table.insert(vim.opt.runtimepath, 1, vim.fn.stdpath('data') .. '/site/pack/*/start/*')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
 end
+vim.opt.runtimepath:prepend(lazypath)
 
-require("packer").startup(function(use)
-  -- make sure to add this line to let packer manage itself
-  use 'wbthomason/packer.nvim'
-
-  -- 基本
-  use {
-    'lewis6991/impatient.nvim',
-    config = function() require('impatient') end,
-  }
+require("lazy").setup({
   -- https://github.com/neovim/neovim/issues/12587
-  use {
+  {
     'antoinemadec/FixCursorHold.nvim',
     config = function()
       vim.g.cursorhold_updatetime = 100
     end,
-  }
-  use {
+  },
+  {
     'mhinz/vim-startify',
     config = function() require('plugins.startify') end,
-  }
-  use {
+  },
+  {
     'nvim-telescope/telescope.nvim',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons',
       'nvim-telescope/telescope-ui-select.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-      'debugloop/telescope-undo.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
     config = function() require('plugins.telescope') end,
-  }
-
-  -- 外观
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    requires = {
-      'p00f/nvim-ts-rainbow',
+    keys = {
+      { '<C-p>', function() require('telescope.builtin').git_files() end },
+      { '<leader>f', function() require('telescope.builtin').find_files() end },
+      { '<leader>a', function() require('telescope.builtin').live_grep() end },
+      { '<leader>t', function() require('telescope.builtin').lsp_document_symbols() end },
     },
+  },
+  {
+    'debugloop/telescope-undo.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
+    config = function()
+      require('telescope').load_extension('undo')
+    end,
+    keys = {
+      { "<leader>u", "<cmd>Telescope undo<cr>" },
+    },
+  },
+  -- 外观
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
     config = function() require('plugins.nvim-treesitter') end,
-  }
-  use {
+  },
+  {
+    'p00f/nvim-ts-rainbow',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+  },
+  {
     'nvim-lualine/lualine.nvim',
-    requires = {
-      { 'kyazdani42/nvim-web-devicons', opt = true },
+    dependencies = {
+      { 'kyazdani42/nvim-web-devicons' },
     },
     config = function()
       require('lualine').setup {
@@ -70,46 +83,53 @@ require("packer").startup(function(use)
         },
       }
     end,
-  }
-  use {
+  },
+  {
     'lewis6991/gitsigns.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
     config = function() require('gitsigns').setup() end,
-  }
-  use {
+  },
+  {
     "petertriho/nvim-scrollbar",
     config = function()
       require("scrollbar").setup()
       require("scrollbar.handlers.gitsigns").setup()
     end
-  }
-  use {
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     config = function() require('plugins.indent_blankline') end,
-  }
-  use {
+  },
+  {
     "themercorp/themer.lua",
     config = function() require('plugins.themer') end,
-  }
-  use {
+    keys = {
+      { '<C-t>', '<cmd>SCROLLCOLOR<cr>' },
+    },
+    lazy = false,
+  },
+  {
     "NvChad/nvim-colorizer.lua",
     config = function() require('colorizer').setup({}) end,
-  }
-  use {
+    ft = { 'vim', 'lua', 'css' },
+  },
+  {
     "j-hui/fidget.nvim",
     config = function() require('fidget').setup() end,
-  }
-  use {
+  },
+  {
     'prichrd/netrw.nvim',
-    config = function() require 'netrw'.setup({}) end
-  }
-  use 'xiyaowong/virtcolumn.nvim'
-  use 'ntpeters/vim-better-whitespace'
-
+    config = function() require 'netrw'.setup({}) end,
+    ft = 'netrw',
+  },
+  'xiyaowong/virtcolumn.nvim',
+  'ntpeters/vim-better-whitespace',
   -- 语法
-  use {
+  {
     'neovim/nvim-lspconfig',
-    requires = {
+    dependencies = {
       -- 启用基于 LSP 的自动补全
       'hrsh7th/cmp-nvim-lsp',
       -- 保存时自动格式化文件
@@ -122,12 +142,28 @@ require("packer").startup(function(use)
       'ray-x/lsp_signature.nvim',
     },
     config = function() require('plugins.lspconfig') end,
-  }
-  use {
+    keys = {
+      { 'K', function() vim.lsp.buf.hover() end },
+      { 'gd', function() vim.lsp.buf.definition() end },
+      { 'gD', function() vim.lsp.buf.type_definition() end },
+
+      { '<leader>ca', function() vim.lsp.buf.code_action() end },
+      { '<leader>F', function() vim.lsp.buf.formatting() end },
+      { '<leader>R', function() vim.lsp.buf.rename() end },
+
+      { '[d', function() vim.diagnostic.goto_prev() end },
+      { ']d', function() vim.diagnostic.goto_next() end },
+
+      { 'gwa', function() vim.lsp.buf.add_workspace_folder() end },
+      { 'gwr', function() vim.lsp.buf.remove_workspace_folder() end },
+      { 'gwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end },
+    },
+  },
+  {
     'hrsh7th/nvim-cmp',
-    requires = {
+    dependencies = {
       'hrsh7th/cmp-nvim-lsp',
-      { 'tzachar/cmp-tabnine', run = './install.sh' },
+      { 'tzachar/cmp-tabnine', build = './install.sh' },
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-buffer',
@@ -140,91 +176,140 @@ require("packer").startup(function(use)
       'onsails/lspkind-nvim',
     },
     config = function() require('plugins.cmp') end,
-  }
-  use {
+    event = 'InsertEnter',
+  },
+  {
     'folke/trouble.nvim',
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = {
+      "kyazdani42/nvim-web-devicons",
+      'neovim/nvim-lspconfig',
+    },
     config = function()
       require('trouble').setup {
         auto_close = true,
         auto_jump = { 'lsp_definitions', 'lsp_type_definitions' },
       }
     end,
+    keys = {
+      { '<leader>d', function() require('trouble').toggle({ mode = 'document_diagnostics' }) end },
+      { '<leader>D', function() require('trouble').toggle({ mode = 'workspace_diagnostics' }) end },
+      { 'gr', function() require('trouble').toggle({ mode = 'lsp_references' }) end },
+      { 'gi', function() require('trouble').toggle({ mode = 'lsp_implementations' }) end },
+    },
     cmd = 'Trouble',
-    module = 'trouble',
-  }
-  use 'kosayoda/nvim-lightbulb'
-
+  },
+  'kosayoda/nvim-lightbulb',
   -- 编辑
-  use {
+  {
     'windwp/nvim-autopairs',
     config = function() require('plugins.nvim-autopairs') end,
     event = 'InsertEnter',
-  }
-  use {
+  },
+  {
     'phaazon/hop.nvim',
     branch = 'v2',
     config = function() require('hop').setup() end,
-    module = 'hop',
-  }
-  use {
+    lazy = true,
+    keys = {
+      {
+        'f',
+        function()
+          require('hop').hint_char1({
+            direction = require 'hop.hint'.HintDirection.AFTER_CURSOR,
+            current_line_only = true,
+          })
+        end,
+        mode = { 'n', 'o' },
+      },
+      {
+        'F',
+        function()
+          require('hop').hint_char1({
+            direction = require 'hop.hint'.HintDirection.BEFORE_CURSOR,
+            current_line_only = true,
+          })
+        end,
+        mode = { 'n', 'o' },
+      },
+      { '<leader><leader>c', function() require('hop').hint_char1() end },
+      { '<leader><leader>w', function() require('hop').hint_words() end },
+    },
+  },
+  {
     'RRethy/nvim-treesitter-endwise',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
     config = function() require('nvim-treesitter.configs').setup { endwise = { enable = true } } end,
     ft = { 'ruby', 'lua', 'vimscript', 'bash' },
-  }
-  use {
+  },
+  {
     'terrortylor/nvim-comment',
     config = function() require('nvim_comment').setup() end,
-  }
-  use({
+  },
+  {
     'Wansmer/treesj',
-    requires = { 'nvim-treesitter' },
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
     config = function()
       require('treesj').setup({
         use_default_keymaps = false,
         max_join_length = 1024,
       })
     end,
-  })
-  use {
+    keys = {
+      { '<leader>jm', function() require('treesj').toggle() end },
+      { '<leader>js', function() require('treesj').split() end },
+      { '<leader>jj', function() require('treesj').join() end },
+    },
+  },
+  {
     'linty-org/readline.nvim',
-    event = 'InsertEnter',
-    config = function() require('plugins.readline') end,
-  }
-  use {
+    keys = {
+      { '<M-f>', function() require('readline').forward_word() end, mode = '!' },
+      { '<M-b>', function() require('readline').backward_word() end, mode = '!' },
+      { '<C-a>', function() require('readline').beginning_of_line() end, mode = '!' },
+      { '<C-e>', function() require('readline').end_of_line() end, mode = '!' },
+      { '<M-d>', function() require('readline').kill_word() end, mode = '!' },
+      { '<C-w>', function() require('readline').backward_kill_word() end, mode = '!' },
+      { '<C-k>', function() require('readline').kill_line() end, mode = '!' },
+      { '<C-u>', function() require('readline').backward_kill_line() end, mode = '!' },
+      { '<C-f>', '<Right>', mode = '!' },
+      { '<C-b>', '<Left>', mode = '!' },
+      { '<C-n>', '<Down>', mode = '!' },
+      { '<C-p>', '<Up>', mode = '!' },
+      { '<C-d>', '<Delete>', mode = '!' },
+      { '<C-h>', '<BS>', mode = '!' },
+    },
+  },
+  {
     'tpope/vim-abolish',
     cmd = 'S',
-  }
-  use 'mg979/vim-visual-multi'
-
+  },
+  'mg979/vim-visual-multi',
   -- 其他
-  use {
+  {
     'dinhhuy258/git.nvim',
     config = function() require('git').setup() end,
-  }
-  use {
+  },
+  {
     'tpope/vim-eunuch',
     cmd = {
       'SudoEdit', 'SudoWrite', 'Remove', 'Rename', 'Delete', 'Move', 'Unlink',
-    }
-  }
-  use {
+    },
+  },
+  {
     'aserowy/tmux.nvim',
     config = function() require('plugins.tmux') end,
-    disable = true,
-  }
-  use {
+    enabled = false,
+  },
+  {
     'knubie/vim-kitty-navigator',
-    run = 'cp ./*.py ~/.config/kitty/',
-  }
-  use {
+    build = 'cp ./*.py ~/.config/kitty/',
+  },
+  {
     'h-hg/fcitx.nvim',
     event = 'InsertEnter',
   }
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if Packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+})
