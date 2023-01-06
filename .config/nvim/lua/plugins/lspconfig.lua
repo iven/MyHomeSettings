@@ -22,7 +22,7 @@ null_ls.setup {
   on_attach = on_attach,
 }
 
-local servers = { 'cmake', 'pyright', 'gopls', 'rust_analyzer', 'bufls' }
+local servers = { 'cmake', 'pyright', 'gopls', 'rust_analyzer', 'tsserver' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,

@@ -34,7 +34,10 @@ telescope.setup {
       --      do the following
       --   codeactions = false,
       -- }
-    }
+    },
+    undo = {
+      diff_context_lines = 5,
+    },
   }
 }
 telescope.load_extension('fzf')
