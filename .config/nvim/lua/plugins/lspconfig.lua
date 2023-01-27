@@ -4,6 +4,7 @@ local lsp_format = require("lsp-format")
 local null_ls = require("null-ls")
 local lsp_signature = require('lsp_signature')
 local lsp_inlayhints = require("lsp-inlayhints")
+local navic = require("nvim-navic")
 
 local runtime_path = vim.split(package.path, ';')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -13,6 +14,9 @@ local on_attach = function(client, bufnr)
   lsp_format.on_attach(client)
   lsp_signature.on_attach()
   lsp_inlayhints.on_attach(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 end
 
 lsp_format.setup()

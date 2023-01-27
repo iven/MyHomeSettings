@@ -67,6 +67,21 @@ require("lazy").setup({
     },
   },
   {
+    "utilyre/barbecue.nvim",
+    version = "*",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("barbecue").setup {
+        attach_navic = false,
+        show_modified = true,
+      }
+    end,
+  },
+  {
     'nvim-lualine/lualine.nvim',
     dependencies = {
       { 'nvim-tree/nvim-web-devicons' },
