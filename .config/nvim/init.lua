@@ -140,6 +140,10 @@ require("lazy").setup({
       'RRethy/vim-illuminate',
       -- 实时显示函数参数定义
       'ray-x/lsp_signature.nvim',
+      {
+        'lvimuser/lsp-inlayhints.nvim',
+        commit = '9bcd6fe25417b7808fe039ab63d4224f2071d24a',
+      }
     },
     config = function() require('plugins.lspconfig') end,
     keys = {

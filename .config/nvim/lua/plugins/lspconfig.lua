@@ -2,17 +2,20 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
 local null_ls = require("null-ls")
 local lsp_signature = require('lsp_signature')
+local lsp_inlayhints = require("lsp-inlayhints")
 
 local runtime_path = vim.split(package.path, ';')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- https://www.reddit.com/r/neovim/comments/tul8pb/lsp_clangd_warning_multiple_different_client/
 capabilities.offsetEncoding = "utf-8"
-local on_attach = function(client)
+local on_attach = function(client, bufnr)
   lsp_format.on_attach(client)
   lsp_signature.on_attach()
+  lsp_inlayhints.on_attach(client, bufnr)
 end
 
 lsp_format.setup()
+lsp_inlayhints.setup()
 null_ls.setup {
   sources = {
     null_ls.builtins.formatting.gofmt,
