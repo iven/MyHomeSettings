@@ -14,6 +14,9 @@ export PYTHONIOENCODING=utf-8
 # CCACHE
 export USE_CCACHE=1
 
+# Nix
+[[ -d ${HOME}/.nix-profile ]] && source ${HOME}/.nix-profile/etc/profile.d/nix.sh
+
 # Path
 [[ -d /usr/lib/ccache ]] && PATH=/usr/lib/ccache/bin:$PATH
 [[ -d $GOPATH ]] && PATH=$GOPATH/bin:$PATH

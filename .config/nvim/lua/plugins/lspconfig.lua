@@ -5,6 +5,8 @@ local lsp_signature = require('lsp_signature')
 
 local runtime_path = vim.split(package.path, ';')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- https://www.reddit.com/r/neovim/comments/tul8pb/lsp_clangd_warning_multiple_different_client/
+capabilities.offsetEncoding = "utf-8"
 local on_attach = function(client)
   lsp_format.on_attach(client)
   lsp_signature.on_attach()
@@ -33,7 +35,7 @@ end
 require('lspconfig')['clangd'].setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  cmd = { "clangd", "--pch-storage=memory" },
+  cmd = { "clangd", "--pch-storage=memory", "-j=64" },
 }
 
 require('lspconfig')['sumneko_lua'].setup {
