@@ -39,7 +39,7 @@ require("lazy").setup({
       { '<C-p>', function() require('telescope.builtin').git_files() end },
       { '<leader>f', function() require('telescope.builtin').find_files() end },
       { '<leader>a', function() require('telescope.builtin').live_grep() end },
-      { '<leader>t', function() require('telescope.builtin').lsp_document_symbols() end },
+      -- { '<leader>t', function() require('telescope.builtin').lsp_document_symbols() end },
     },
   },
   {
@@ -65,6 +65,28 @@ require("lazy").setup({
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
+  },
+  {
+    'akinsho/bufferline.nvim',
+    version = "^3.1.0",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('plugins.bufferline')
+    end,
+    keys = {
+      { "<leader>t", "<cmd>BufferLinePick<cr>" },
+      { "<leader>1", "<cmd>BufferLineGoToBuffer 1<cr>" },
+      { "<leader>2", "<cmd>BufferLineGoToBuffer 2<cr>" },
+      { "<leader>3", "<cmd>BufferLineGoToBuffer 3<cr>" },
+      { "<leader>4", "<cmd>BufferLineGoToBuffer 4<cr>" },
+      { "<leader>5", "<cmd>BufferLineGoToBuffer 5<cr>" },
+      { "<leader>6", "<cmd>BufferLineGoToBuffer 6<cr>" },
+      { "<leader>7", "<cmd>BufferLineGoToBuffer 7<cr>" },
+      { "<leader>8", "<cmd>BufferLineGoToBuffer 8<cr>" },
+      { "<leader>9", "<cmd>BufferLineGoToBuffer 9<cr>" },
+      { "<leader>$", "<cmd>BufferLineGoToBuffer -1<cr>" },
+    },
+    lazy = false,
   },
   {
     "utilyre/barbecue.nvim",
@@ -158,7 +180,7 @@ require("lazy").setup({
       {
         'lvimuser/lsp-inlayhints.nvim',
         commit = '9bcd6fe25417b7808fe039ab63d4224f2071d24a',
-      }
+      },
     },
     config = function() require('plugins.lspconfig') end,
     keys = {

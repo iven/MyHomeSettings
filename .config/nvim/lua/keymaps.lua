@@ -35,7 +35,7 @@ vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
 vim.keymap.set('n', '<leader>W', '<cmd>SudoWrite<cr>')
 
 -- Move around splits using Ctrl + {h,j,k,l}
--- tmux.nvim 已经提供此功能
+-- vim-kitty-navigator 已经提供此功能
 -- vim.keymap.set('n', '<C-h>', '<C-w>h')
 -- vim.keymap.set('n', '<C-j>', '<C-w>j')
 -- vim.keymap.set('n', '<C-k>', '<C-w>k')

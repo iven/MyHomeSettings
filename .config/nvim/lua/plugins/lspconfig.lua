@@ -20,7 +20,11 @@ local on_attach = function(client, bufnr)
 end
 
 lsp_format.setup()
-lsp_inlayhints.setup()
+lsp_inlayhints.setup {
+  inlay_hints = {
+    only_current_line = true,
+  },
+}
 null_ls.setup {
   sources = {
     null_ls.builtins.formatting.gofmt,

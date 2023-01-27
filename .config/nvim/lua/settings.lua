@@ -11,6 +11,7 @@
 -----------------------------------------------------------
 vim.opt.fileencodings = 'ucs-bom,utf-8,gb18030,gb2312,gbk,cp936'
 vim.opt.mouse = 'a' -- Enable mouse support
+vim.opt.mousemoveevent = true
 vim.opt.clipboard = 'unnamedplus' -- 使用系统剪贴板，需要安装 xclip 或者 wl-clipboard
 vim.opt.swapfile = false -- Don't use swapfile
 vim.opt.undofile = true -- 保存 Undo 历史
