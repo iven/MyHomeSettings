@@ -1,3 +1,4 @@
+local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
 local null_ls = require("null-ls")
@@ -29,19 +30,19 @@ null_ls.setup {
 
 local servers = { 'cmake', 'pyright', 'gopls', 'rust_analyzer', 'tsserver' }
 for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
+  lspconfig[lsp].setup {
     capabilities = capabilities,
     on_attach = on_attach,
   }
 end
 
-require('lspconfig')['clangd'].setup {
+lspconfig['clangd'].setup {
   capabilities = capabilities,
   on_attach = on_attach,
   cmd = { "clangd", "--pch-storage=memory", "-j=64" },
 }
 
-require('lspconfig')['sumneko_lua'].setup {
+lspconfig['sumneko_lua'].setup {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -59,10 +60,23 @@ require('lspconfig')['sumneko_lua'].setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        -- https://github.com/neovim/nvim-lspconfig/issues/1700
+        checkThirdParty = false,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
         enable = false,
+      },
+      root_dir = {
+        "init.lua",
+        ".luarc.json",
+        ".luarc.jsonc",
+        ".luacheckrc",
+        ".stylua.toml",
+        "stylua.toml",
+        "selene.toml",
+        "selene.yml",
+        -- ".git",
       },
     },
   },
