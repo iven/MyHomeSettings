@@ -30,7 +30,7 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
       'nvim-telescope/telescope-ui-select.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
@@ -69,7 +69,7 @@ require("lazy").setup({
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {
-      { 'kyazdani42/nvim-web-devicons' },
+      { 'nvim-tree/nvim-web-devicons' },
     },
     config = function()
       require('lualine').setup {
@@ -185,7 +185,7 @@ require("lazy").setup({
   {
     'folke/trouble.nvim',
     dependencies = {
-      "kyazdani42/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
       'neovim/nvim-lspconfig',
     },
     config = function()
