@@ -154,7 +154,13 @@ require("lazy").setup({
   },
   {
     "j-hui/fidget.nvim",
-    config = function() require('fidget').setup() end,
+    config = function()
+      require('fidget').setup {
+        text = {
+          spinner = "meter",
+        },
+      }
+    end,
   },
   {
     'prichrd/netrw.nvim',
