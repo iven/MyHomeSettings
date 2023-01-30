@@ -1,6 +1,5 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
-local tabnine = require('cmp_tabnine.config')
 local lspkind = require('lspkind')
 
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
@@ -11,11 +10,6 @@ end
 
 -- https://github.com/L3MON4D3/LuaSnip#add-snippets
 require("luasnip.loaders.from_vscode").lazy_load()
-
-tabnine:setup {
-  max_num_results = 2,
-  show_prediction_strength = true,
-}
 
 cmp.setup {
   -- 防止 cmp 默认选择一个莫名其妙的候选项
@@ -34,6 +28,7 @@ cmp.setup {
     -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert {
+    ['<C-c>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<C-j>'] = cmp.mapping(function(fallback)
       if luasnip.expand_or_jumpable() then
@@ -66,7 +61,7 @@ cmp.setup {
   },
   sources = cmp.config.sources(
     {
-      { name = 'cmp_tabnine' },
+      { name = 'codeium' },
       { name = 'nvim_lsp' },
       -- { name = 'vsnip' }, -- For vsnip users.
       { name = 'luasnip' }, -- For luasnip users.
@@ -91,7 +86,6 @@ cmp.setup {
   ),
   sorting = {
     comparators = {
-      require('cmp_tabnine.compare'),
       cmp.config.compare.offset,
       cmp.config.compare.exact,
       cmp.config.compare.score,
@@ -105,7 +99,7 @@ cmp.setup {
   formatting = {
     format = lspkind.cmp_format {
       menu = ({
-        cmp_tabnine = '[TabNine]',
+        codeium = '[Codeium]',
         nvim_lsp = '[LSP]',
         luasnip = '[LuaSnip]',
         nvim_lua = '[Lua]',

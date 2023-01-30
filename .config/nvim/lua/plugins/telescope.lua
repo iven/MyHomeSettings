@@ -11,7 +11,7 @@ telescope.setup {
         ['<C-d>'] = false,
         ['<C-u>'] = false,
         ['<esc>'] = actions.close,
-        ['<c-t>'] = trouble.open_with_trouble,
+        ['<C-o>'] = trouble.open_with_trouble,
       },
     },
     sorting_strategy = 'ascending',

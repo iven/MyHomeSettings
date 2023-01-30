@@ -210,7 +210,6 @@ require("lazy").setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
-      { 'tzachar/cmp-tabnine', build = './install.sh' },
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-buffer',
@@ -224,6 +223,18 @@ require("lazy").setup({
     },
     config = function() require('plugins.cmp') end,
     event = 'InsertEnter',
+  },
+  {
+    "jcdickinson/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({
+      })
+    end
   },
   {
     'folke/trouble.nvim',
