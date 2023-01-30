@@ -143,7 +143,7 @@ require("lazy").setup({
     "themercorp/themer.lua",
     config = function() require('plugins.themer') end,
     keys = {
-      { '<C-t>', '<cmd>SCROLLCOLOR<cr>' },
+      { '<leader>t', '<cmd>SCROLLCOLOR<cr>' },
     },
     lazy = false,
   },

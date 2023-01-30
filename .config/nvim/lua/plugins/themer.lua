@@ -1,5 +1,5 @@
 require("themer").setup {
-  colorscheme = "kanagawa",
+  colorscheme = "monokai_vibrant",
   dim_inactive = true,
   styles = {
     number          = { style = 'italic' },
