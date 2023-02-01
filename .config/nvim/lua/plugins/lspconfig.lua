@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local lsputil = require("lspconfig.util")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
 local null_ls = require("null-ls")
@@ -75,19 +76,19 @@ lspconfig['sumneko_lua'].setup {
       telemetry = {
         enable = false,
       },
-      root_dir = {
-        "init.lua",
-        ".luarc.json",
-        ".luarc.jsonc",
-        ".luacheckrc",
-        ".stylua.toml",
-        "stylua.toml",
-        "selene.toml",
-        "selene.yml",
-        -- ".git",
-      },
     },
   },
+  root_dir = lsputil.root_pattern(
+    "init.lua",
+    ".luarc.json",
+    ".luarc.jsonc",
+    ".luacheckrc",
+    ".stylua.toml",
+    "stylua.toml",
+    "selene.toml",
+    "selene.yml",
+    ".git"
+  ),
 }
 
 -- 为 LSP 浮动窗口添加边框

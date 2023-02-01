@@ -14,6 +14,9 @@ export PYTHONIOENCODING=utf-8
 # CCACHE
 export USE_CCACHE=1
 
+# Proxy
+export no_proxy=localhost,127.0.0.1
+
 # Nix
 [[ -d ${HOME}/.nix-profile ]] && source ${HOME}/.nix-profile/etc/profile.d/nix.sh
 

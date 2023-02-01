@@ -167,8 +167,16 @@ require("lazy").setup({
     config = function() require 'netrw'.setup({}) end,
     ft = 'netrw',
   },
+  {
+    'johnfrankmorgan/whitespace.nvim',
+    config = function()
+      require('whitespace-nvim').setup({
+        highlight = 'DiffDelete',
+        ignored_filetypes = { 'TelescopePrompt', 'Trouble', 'toggleterm', 'lazy', 'help' },
+      })
+    end
+  },
   'xiyaowong/virtcolumn.nvim',
-  'ntpeters/vim-better-whitespace',
   -- 语法
   {
     'neovim/nvim-lspconfig',
@@ -232,8 +240,7 @@ require("lazy").setup({
       "hrsh7th/nvim-cmp",
     },
     config = function()
-      require("codeium").setup({
-      })
+      require("codeium").setup({})
     end
   },
   {
@@ -311,10 +318,10 @@ require("lazy").setup({
       'nvim-treesitter/nvim-treesitter',
     },
     config = function()
-      require('treesj').setup({
+      require('treesj').setup {
         use_default_keymaps = false,
         max_join_length = 1024,
-      })
+      }
     end,
     keys = {
       { '<leader>jm', function() require('treesj').toggle() end },
@@ -356,6 +363,32 @@ require("lazy").setup({
     cmd = {
       'SudoEdit', 'SudoWrite', 'Remove', 'Rename', 'Delete', 'Move', 'Unlink',
     },
+  },
+  {
+    'ojroques/nvim-osc52',
+    config = function()
+      require('osc52').setup {
+        max_length = 1000000,
+      }
+      -- 不知道为啥，用 Lazy 的写法不好使
+      vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, { expr = true })
+      vim.keymap.set('n', '<leader>cc', '<leader>c_', { remap = true })
+      vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
+    end,
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    version = '*',
+    config = function()
+      require('toggleterm').setup {
+        open_mapping = "<c-`>",
+        direction = 'float',
+        shell = 'zsh',
+        winbar = {
+          enabled = true,
+        },
+      }
+    end,
   },
   {
     'aserowy/tmux.nvim',

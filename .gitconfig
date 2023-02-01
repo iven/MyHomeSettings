@@ -45,3 +45,5 @@
   gpgsign = true
 [format]
   signOff = true
+[rebase]
+  autoStash = true
