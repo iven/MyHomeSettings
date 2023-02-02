@@ -38,8 +38,13 @@ require("lazy").setup({
     keys = {
       { '<C-p>', function() require('telescope.builtin').git_files() end },
       { '<leader>f', function() require('telescope.builtin').find_files() end },
-      { '<leader>a', function() require('telescope.builtin').live_grep() end },
-      -- { '<leader>t', function() require('telescope.builtin').lsp_document_symbols() end },
+      {
+        '<leader>a',
+        function()
+          local git_root, _ = require('telescope.utils').get_os_command_output({ "git", "rev-parse", "--show-toplevel" })
+          require('telescope.builtin').live_grep { cwd = git_root[1] }
+        end,
+      },
     },
   },
   {
@@ -74,7 +79,7 @@ require("lazy").setup({
       require('plugins.bufferline')
     end,
     keys = {
-      { "<leader>t", "<cmd>BufferLinePick<cr>" },
+      { "<C-t>", "<cmd>BufferLinePick<cr>" },
       { "<leader>1", "<cmd>BufferLineGoToBuffer 1<cr>" },
       { "<leader>2", "<cmd>BufferLineGoToBuffer 2<cr>" },
       { "<leader>3", "<cmd>BufferLineGoToBuffer 3<cr>" },
@@ -142,10 +147,6 @@ require("lazy").setup({
   {
     "themercorp/themer.lua",
     config = function() require('plugins.themer') end,
-    keys = {
-      { '<leader>t', '<cmd>SCROLLCOLOR<cr>' },
-    },
-    lazy = false,
   },
   {
     "NvChad/nvim-colorizer.lua",
@@ -172,7 +173,7 @@ require("lazy").setup({
     config = function()
       require('whitespace-nvim').setup({
         highlight = 'DiffDelete',
-        ignored_filetypes = { 'TelescopePrompt', 'Trouble', 'toggleterm', 'lazy', 'help' },
+        ignored_filetypes = { 'TelescopePrompt', 'Trouble', 'toggleterm', 'lazy', 'lspinfo', 'help' },
       })
     end
   },

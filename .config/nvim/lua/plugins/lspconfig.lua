@@ -8,17 +8,23 @@ local lsp_inlayhints = require("lsp-inlayhints")
 local navic = require("nvim-navic")
 
 local runtime_path = vim.split(package.path, ';')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = cmp_nvim_lsp.default_capabilities()
 -- https://www.reddit.com/r/neovim/comments/tul8pb/lsp_clangd_warning_multiple_different_client/
 capabilities.offsetEncoding = "utf-8"
-local on_attach = function(client, bufnr)
-  lsp_format.on_attach(client)
-  lsp_signature.on_attach()
-  lsp_inlayhints.on_attach(client, bufnr)
-  if client.server_capabilities.documentSymbolProvider then
-    navic.attach(client, bufnr)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    lsp_format.on_attach(client)
+    lsp_signature.on_attach()
+    lsp_inlayhints.on_attach(client, bufnr)
+    if client.server_capabilities.documentSymbolProvider then
+      navic.attach(client, bufnr)
+    end
   end
-end
+})
 
 lsp_format.setup()
 lsp_inlayhints.setup {
@@ -28,32 +34,27 @@ lsp_inlayhints.setup {
 }
 null_ls.setup {
   sources = {
-    null_ls.builtins.formatting.gofmt,
-    null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.diagnostics.golangci_lint,
+    -- null_ls.builtins.formatting.gofmt,
+    -- null_ls.builtins.formatting.goimports,
+    -- null_ls.builtins.formatting.prettier,
+    -- null_ls.builtins.diagnostics.golangci_lint,
   },
-  debug = true,
-  on_attach = on_attach,
 }
 
 local servers = { 'cmake', 'pyright', 'gopls', 'rust_analyzer', 'tsserver' }
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
     capabilities = capabilities,
-    on_attach = on_attach,
   }
 end
 
 lspconfig['clangd'].setup {
   capabilities = capabilities,
-  on_attach = on_attach,
-  cmd = { "clangd", "--pch-storage=memory", "-j=64" },
+  cmd = { "clangd", "--pch-storage=memory", "-j=96" },
 }
 
 lspconfig['sumneko_lua'].setup {
   capabilities = capabilities,
-  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -92,14 +93,31 @@ lspconfig['sumneko_lua'].setup {
 }
 
 -- 为 LSP 浮动窗口添加边框
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = opts.border or 'single'
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
+-- https://vi.stackexchange.com/questions/39074/user-borders-around-lsp-floating-windows
+local _border = "single"
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  {
+    border = _border
+  }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help,
+  {
+    border = _border
+  }
+)
+
+require('lspconfig.ui.windows').default_options = {
+  border = _border
+}
 
 -- 输入时实时提示错误
 vim.diagnostic.config {
   update_in_insert = true,
+  float = {
+    border = _border,
+  },
 }
