@@ -1,49 +1,30 @@
 [user]
-  email = ivenvd@gmail.com
-  name = Iven Hsu
-  signingkey = D829E4EB662B22F8
-[alias]
-  st = status -sb
-  co = checkout
-  ps = push origin --all
-  pl = pull --rebase --tags
-
-  ci = commit -a
-  cia = commit -a --amend
-
-  df = diff
-  dc = diff --cached
-
-  ri = rebase -i
-  rc = rebase --continue
-  ra = rebase --abort
-
-  br = branch
-  tags = tag --list
-
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-  who = shortlog -sn
+    email = ivenvd@gmail.com
+    name = Iven Hsu
+    signingkey = D829E4EB662B22F8
 [color]
-  ui = auto
+    ui = auto
 [diff]
-  # algorithm = histogram
-  # wordregex = ",|.|=|'|\"|(|)|[^[:space:]()='\".,_]+"
-  # wordregex = "=|'|\"|[^[:space:]()='\".,]+"
+    # algorithm = histogram
+    # wordregex = ",|.|=|'|\"|(|)|[^[:space:]()='\".,_]+"
+    # wordregex = "=|'|\"|[^[:space:]()='\".,]+"
+    colorMoved = default
 [core]
-  excludesfile = ~/.global_ignore
-  pager = delta
+    excludesfile = ~/.global_ignore
+    pager = delta
 [interactive]
-  diffFilter = delta --color-only
+    diffFilter = delta --color-only
 [delta]
-  plus-color = "#356054"
-  minus-color = "#503524"
+    navigate = true
+    plus-color = "#356054"
+    minus-color = "#503524"
+[merge]
+    conflictstyle = diff3
 [push]
-  default = matching
-[gpg]
-  program = gpg2
+    default = matching
 [commit]
-  gpgsign = true
+    gpgsign = true
 [format]
-  signOff = true
+    signOff = true
 [rebase]
-  autoStash = true
+    autoStash = true

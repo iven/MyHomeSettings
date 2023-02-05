@@ -28,7 +28,10 @@ vim.keymap.set('n', 'k', 'gk')
 vim.keymap.set('n', ';', ':')
 
 -- Visual 模式粘贴时，不覆盖剪贴板
-vim.keymap.set('v', 'p', '"_dP')
+vim.keymap.set('v', 'p', '"_s<esc>p')
+
+-- 禁用鼠标跳转 Tag 行为
+vim.keymap.set('n', '<C-LeftMouse>', '<Nop>')
 
 -- Fast saving with <leader> and w
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
