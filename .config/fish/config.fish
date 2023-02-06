@@ -12,6 +12,10 @@ set -gx PAGER less -RFXM
 set -gx PYTHONIOENCODING utf-8
 set -gx no_proxy localhost,127.0.0.1
 
+if test -d /etc/profile.d/99-wukong.sh
+    replay source /etc/profile.d/99-wukong.sh
+end
+
 ########## 交互式会话 ##########
 
 if status is-interactive

@@ -9,35 +9,47 @@ set -g __git_abbr_version 0.2.1
 
 abbr g 'git'
 
+# ga: git add
 abbr ga 'git add'
 abbr gaa 'git add --all'
 abbr gapa 'git add --patch'
 abbr gau 'git add --update'
 abbr gav 'git add --verbose'
+
+# gam: git am
+abbr gam 'git am'
+abbr gamc 'git am --continue'
+abbr gams 'git am --skip'
+abbr gama 'git am --abort'
+abbr gamscp 'git am --show-current-patch'
+
+# gap: git apply
 abbr gap 'git apply'
 abbr gapt 'git apply --3way'
 
+# gb: git branch
 abbr gb 'git branch'
 abbr gba 'git branch -a'
 abbr gbd 'git branch -d'
 abbr gbdf 'git branch -d -f'
 abbr gbD 'git branch -D'
-abbr gbDf 'git branch -D -f'
 abbr gbnm 'git branch --no-merged'
 abbr gbr 'git branch --remote'
 
+# gbl: git blame
 abbr gbl 'git blame -b -w'
 
+# gbs: git bisect
 abbr gbs 'git bisect'
 abbr gbsb 'git bisect bad'
 abbr gbsg 'git bisect good'
 abbr gbsr 'git bisect reset'
 abbr gbss 'git bisect start'
 
+# gc: git commit
 abbr gc 'git commit -v'
-abbr gci 'git commit --allow-empty -v -m\'chore: initial commit\''
+abbr gci 'git commit --allow-empty -v -m \'chore: initial commit\''
 abbr gc! 'git commit -v --amend'
-abbr gcn 'git commit -v --no-edit'
 abbr gcn! 'git commit -v --amend --no-edit'
 abbr gca 'git commit -a -v'
 abbr gca! 'git commit -a -v --amend'
@@ -50,12 +62,17 @@ abbr gcsm 'git commit -s -m'
 abbr gcm 'git commit -m'
 abbr gcs 'git commit -S'
 
-abbr gcf 'git config --list'
+# gcf: git config
+abbr gcf 'git config'
+abbr gcfl 'git config --list'
 
+# gcl: git clone
 abbr gcl 'git clone --recurse-submodules'
 
+# gclean: git clean
 abbr gclean 'git clean -id'
 
+# gco: git checkout
 abbr gco 'git checkout'
 abbr gcob 'git checkout -b'
 abbr gcom 'git checkout (git_main_branch)'
@@ -66,52 +83,60 @@ abbr gcor 'git checkout release/'
 abbr gcos 'git checkout support/'
 abbr gcors 'git checkout --recurse-submodules'
 
-abbr gcount 'git shortlog -sn'
-
+# gcp: git cherry-pick
 abbr gcp 'git cherry-pick'
 abbr gcpa 'git cherry-pick --abort'
 abbr gcpc 'git cherry-pick --continue'
 
+# gd: git diff
 abbr gd 'git diff'
 abbr gdca 'git diff --cached'
 abbr gdcw 'git diff --cached --word-diff'
-abbr gdct 'git diff --staged'
+abbr gds 'git diff --staged'
 abbr gdt 'git diff-tree --no-commit-id --name-only -r'
 # abbr gdnolock 'git diff ":(exclude)package-lock.json" ":(exclude)*.lock"'
 abbr gdup 'git diff @{upstream}'
 # abbr gdv 'git diff -w $@ | view -'
+abbr gdw git diff --word-diff
 
+# gdc: git describe
 abbr gdct 'git describe --tags (git rev-list --tags --max-count=1)'
 
+# gf: git fetch
 abbr gf 'git fetch'
 abbr gfa 'git fetch --all --prune'
 abbr gfo 'git fetch origin'
 
+# gg: current branch related abbreviations
+abbr ggp 'git push origin (git_current_branch)'
+abbr ggpf 'git push --force-with-lease origin (git_current_branch)'
+abbr ggpf! 'git push --force origin (git_current_branch)'
+abbr ggpl 'git pull origin (git_current_branch)'
+abbr ggrs 'git reset origin/(git_current_branch)'
+abbr ggrs! 'git reset origin/(git_current_branch) --hard'
+
 # gg
 # gga
-# ggf
-# ggfl
-# ggl
-# ggp
 # ggpnp
-# ggpull
-# ggpur
-# ggpush
 # ggsup
-# ggu
 # gpsup
+# gpsupf
 
-abbr ghh 'git help'
+# gh: git help
+abbr gh 'git help'
 
+# gi: git init
 abbr gi 'git init'
 
 abbr gignore 'git update-index --assume-unchanged'
-abbr gignored 'git ls-files -v | grep "^[[:lower:]]"'
-
-abbr gk 'gitk --all --branches &!'
-abbr gke 'gitk --all (git log -g --pretty=%h) &!'
+abbr gunignore 'git update-index --no-assume-unchanged'
 
 abbr gfg 'git ls-files | grep'
+abbr gignored 'git ls-files -v | grep "^[[:lower:]]"'
+
+# gk: gitk
+abbr gk 'gitk --all --branches &!'
+abbr gke 'gitk --all (git log -g --pretty=%h) &!'
 
 # gl: git log
 abbr gl 'git log'
@@ -148,23 +173,23 @@ abbr gpt 'git push --tags'
 abbr gptf 'git push --tags --force-with-lease'
 abbr gptf! 'git push --tags --force'
 abbr gpoat 'git push origin --all && git push origin --tags'
-abbr gpoatf! 'git push origin --all --force-with-lease && git push origin --tags --force-with-lease'
+abbr gpoatf 'git push origin --all --force-with-lease && git push origin --tags --force-with-lease'
 abbr gpoatf! 'git push origin --all --force && git push origin --tags --force'
 abbr gpv 'git push -v'
 
 # gpl: git pull
 abbr gpl 'git pull'
 abbr gplo 'git pull origin'
-abbr gplom 'git pull origin master'
+abbr gplom 'git pull origin (git_main_branch)'
 abbr gplu 'git pull upstream'
-abbr gplum 'git pull upstream master'
+abbr gplum 'git pull upstream (git_main_branch)'
 
 # gr: git remote
 abbr gr 'git remote -v'
 abbr gra 'git remote add'
 abbr grau 'git remote add upstream'
-abbr grrm 'git remote remove'
 abbr grmv 'git remote rename'
+abbr grrm 'git remote remove'
 abbr grset 'git remote set-url'
 abbr gru 'git remote update'
 abbr grv 'git remote -v'
@@ -176,6 +201,7 @@ abbr grba 'git rebase --abort'
 abbr grbc 'git rebase --continue'
 abbr grbd 'git rebase (git_develop_branch)'
 abbr grbi 'git rebase -i'
+abbr grbiom 'git rebase -i origin/(git_main_branch)'
 abbr grbom 'git rebase origin/(git_main_branch)'
 abbr grbo 'git rebase --onto'
 abbr grbs 'git rebase --skip'
@@ -186,10 +212,8 @@ abbr grev 'git revert'
 # grs: git reset
 abbr grs 'git reset'
 abbr grs! 'git reset --hard'
-abbr grsh 'git reset HEAD'
-abbr grsh! 'git reset HEAD --hard'
-abbr grsoh 'git reset origin/(git_current_branch)'
-abbr grsoh! 'git reset origin/(git_current_branch) --hard'
+abbr grsom 'git reset origin/(git_main_branch)'
+abbr grsom! 'git reset origin/(git_main_branch) --hard'
 abbr gpristine 'git reset --hard && git clean -dffx'
 abbr grs- 'git reset --'
 
@@ -202,17 +226,21 @@ abbr grst 'git restore'
 abbr grsts 'git restore --source'
 abbr grstst 'git restore --staged'
 
-# grt: git return
-abbr grt 'cd "(git rev-parse --show-toplevel || echo .)"'
+# grt: git root
+abbr grt 'cd (git rev-parse --show-toplevel)'
 
 # gs: git status
 abbr gs 'git status'
 abbr gss 'git status -s'
 abbr gsb 'git status -sb'
 
-# gshow: git show
-abbr gshow 'git show'
-abbr gshowps 'git show --pretty=short --show-signature'
+# gsh: git show
+abbr gsh 'git show'
+abbr gshps 'git show --pretty=short --show-signature'
+
+# gsm: git submodule
+abbr gsmi 'git submodule init'
+abbr gsmu 'git submodule update'
 
 # gst: git stash
 abbr gst 'git stash'
@@ -221,12 +249,12 @@ abbr gstc 'git stash clear'
 abbr gstd 'git stash drop'
 abbr gstl 'git stash list'
 abbr gstp 'git stash pop'
-abbr gstshow 'git stash show --text'
+abbr gstsh 'git stash show --text'
 abbr gstall 'git stash --all'
 abbr gsts 'git stash save'
 
-# gsu: git submodule
-abbr gsu 'git submodule update'
+# gstat
+abbr gstat 'git shortlog -sn'
 
 # gsw: git switch
 abbr gsw 'git switch'
@@ -239,6 +267,8 @@ abbr gt 'git tag'
 abbr gts 'git tag -s'
 abbr gta 'git tag -a'
 abbr gtas 'git tag -a -s'
+abbr gtv 'git tag | sort -V'
+
 # gtl
 
 # gwch: git whatchanged
@@ -247,16 +277,9 @@ abbr gwch 'git whatchanged -p --abbrev-commit --pretty=medium'
 # gwt: git worktree
 abbr gwt 'git worktree'
 abbr gwta 'git worktree add'
-abbr gwtls 'git worktree list'
+abbr gwtl 'git worktree list'
 abbr gwtmv 'git worktree move'
 abbr gwtrm 'git worktree remove'
-
-# gam: git am
-abbr gam 'git am'
-abbr gamc 'git am --continue'
-abbr gams 'git am --skip'
-abbr gama 'git am --abort'
-abbr gamscp 'git am --show-current-patch'
 
 function git_abbr_uninstall --on-event git_abbr_uninstall
 
@@ -273,6 +296,11 @@ function git_abbr_uninstall --on-event git_abbr_uninstall
   abbr -e gapa
   abbr -e gau
   abbr -e gav
+  abbr -e gam
+  abbr -e gamc
+  abbr -e gams
+  abbr -e gama
+  abbr -e gamscp
   abbr -e gap
   abbr -e gapt
   abbr -e gb
@@ -292,7 +320,6 @@ function git_abbr_uninstall --on-event git_abbr_uninstall
   abbr -e gc
   abbr -e gci
   abbr -e gc!
-  abbr -e gcn
   abbr -e gcn!
   abbr -e gca
   abbr -e gca!
@@ -305,6 +332,7 @@ function git_abbr_uninstall --on-event git_abbr_uninstall
   abbr -e gcm
   abbr -e gcs
   abbr -e gcf
+  abbr -e gcfl
   abbr -e gcl
   abbr -e gclean
   abbr -e gco
@@ -316,27 +344,34 @@ function git_abbr_uninstall --on-event git_abbr_uninstall
   abbr -e gcor
   abbr -e gcos
   abbr -e gcors
-  abbr -e gcount
   abbr -e gcp
   abbr -e gcpa
   abbr -e gcpc
   abbr -e gd
   abbr -e gdca
   abbr -e gdcw
-  abbr -e gdct
+  abbr -e gds
   abbr -e gdt
   abbr -e gdup
+  abbr -e gdw
   abbr -e gdct
   abbr -e gf
   abbr -e gfa
   abbr -e gfo
-  abbr -e ghh
+  abbr -e ggp
+  abbr -e ggpf
+  abbr -e ggpf!
+  abbr -e ggpl
+  abbr -e ggrs
+  abbr -e ggrs!
+  abbr -e gh
   abbr -e gi
   abbr -e gignore
+  abbr -e gunignore
+  abbr -e gfg
   abbr -e gignored
   abbr -e gk
   abbr -e gke
-  abbr -e gfg
   abbr -e gl
   abbr -e gls
   abbr -e glsp
@@ -360,7 +395,7 @@ function git_abbr_uninstall --on-event git_abbr_uninstall
   abbr -e gptf
   abbr -e gptf!
   abbr -e gpoat
-  abbr -e gpoatf!
+  abbr -e gpoatf
   abbr -e gpoatf!
   abbr -e gpv
   abbr -e gpl
@@ -371,8 +406,8 @@ function git_abbr_uninstall --on-event git_abbr_uninstall
   abbr -e gr
   abbr -e gra
   abbr -e grau
-  abbr -e grrm
   abbr -e grmv
+  abbr -e grrm
   abbr -e grset
   abbr -e gru
   abbr -e grv
@@ -382,16 +417,15 @@ function git_abbr_uninstall --on-event git_abbr_uninstall
   abbr -e grbc
   abbr -e grbd
   abbr -e grbi
+  abbr -e grbiom
   abbr -e grbom
   abbr -e grbo
   abbr -e grbs
   abbr -e grev
   abbr -e grs
   abbr -e grs!
-  abbr -e grsh
-  abbr -e grsh!
-  abbr -e grsoh
-  abbr -e grsoh!
+  abbr -e grsom
+  abbr -e grsom!
   abbr -e gpristine
   abbr -e grs-
   abbr -e grm
@@ -403,18 +437,20 @@ function git_abbr_uninstall --on-event git_abbr_uninstall
   abbr -e gs
   abbr -e gss
   abbr -e gsb
-  abbr -e gshow
-  abbr -e gshowps
+  abbr -e gsh
+  abbr -e gshps
+  abbr -e gsmi
+  abbr -e gsmu
   abbr -e gst
   abbr -e gsta
   abbr -e gstc
   abbr -e gstd
   abbr -e gstl
   abbr -e gstp
-  abbr -e gstshow
+  abbr -e gstsh
   abbr -e gstall
   abbr -e gsts
-  abbr -e gsu
+  abbr -e gstat
   abbr -e gsw
   abbr -e gswc
   abbr -e gswm
@@ -423,15 +459,11 @@ function git_abbr_uninstall --on-event git_abbr_uninstall
   abbr -e gts
   abbr -e gta
   abbr -e gtas
+  abbr -e gtv
   abbr -e gwch
   abbr -e gwt
   abbr -e gwta
-  abbr -e gwtls
+  abbr -e gwtl
   abbr -e gwtmv
   abbr -e gwtrm
-  abbr -e gam
-  abbr -e gamc
-  abbr -e gams
-  abbr -e gama
-  abbr -e gamscp
 end
