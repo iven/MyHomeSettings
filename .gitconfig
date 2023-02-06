@@ -5,9 +5,6 @@
 [color]
     ui = auto
 [diff]
-    # algorithm = histogram
-    # wordregex = ",|.|=|'|\"|(|)|[^[:space:]()='\".,_]+"
-    # wordregex = "=|'|\"|[^[:space:]()='\".,]+"
     colorMoved = default
 [core]
     excludesfile = ~/.global_ignore
@@ -16,8 +13,6 @@
     diffFilter = delta --color-only
 [delta]
     navigate = true
-    plus-color = "#356054"
-    minus-color = "#503524"
 [merge]
     conflictstyle = diff3
 [push]

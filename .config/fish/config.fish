@@ -8,19 +8,9 @@ fish_add_path $HOME/.krew/bin
 
 set -gx EDITOR vim
 set -gx VISUAL $EDITOR
+set -gx PAGER less -RFXM
 set -gx PYTHONIOENCODING utf-8
 set -gx no_proxy localhost,127.0.0.1
-
-if command -sq most
-    set -gx PAGER most
-else
-    set -gx PAGER less -RFXM
-end
-
-set -gx BAT_THEME 1337
-
-set fzf_fd_opts --hidden --exclude=.git
-set fzf_preview_dir_cmd exa --all --color=always
 
 ########## 交互式会话 ##########
 
@@ -30,19 +20,37 @@ if status is-interactive
     abbr -a cpr cp -R
     abbr -a rmr rm -RI
     abbr -a pg pgrep -lf
-    abbr -a f fd
-    abbr -a tree exa --tree
 
-    if command -sq exa
-        alias ls exa
-    end
+    if command -sq bat; or command -sq batcat
+        set -gx BAT_THEME 1337
+        set -gx BAT_STYLE header,grid,snip
 
-    if command -sq bat
-        alias cat bat
+        if command -sq bat
+            alias cat bat
+        end
+
+        if command -sq batcat
+            alias cat batcat
+        end
     end
 
     if command -sq delta
         alias diff delta
+    end
+
+    if command -sq exa
+        abbr -a tree exa --tree
+        abbr -a la exa -lah
+        alias ls exa
+    end
+
+    if command -sq fd
+        abbr -a f fd
+    end
+
+    if command -sq fzf
+        set fzf_fd_opts --hidden --exclude=.git
+        set fzf_preview_dir_cmd exa --all --color=always
     end
 
     if command -sq kubectl
@@ -78,7 +86,8 @@ if status is-interactive
     set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
     set -x GPG_TTY (tty)
 
-    # starship
+    ########## 其他 ##########
+
     if command -sq starship
         starship init fish | source
     end
