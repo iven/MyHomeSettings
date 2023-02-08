@@ -121,7 +121,7 @@ disabled = true
 
 [cmd_duration]
 format = "[󰚭$duration]($style) "
-style = "italic blue"
+style = "italic yellow"
 
 [conda]
 symbol = " "
@@ -393,8 +393,9 @@ disabled = true
 disabled = true
 
 [time]
-format = " [$time]($style) "
-disabled = true
+format = "[$time]($style) "
+style = "italic blue"
+disabled = false
 
 [username]
 format = "[$user@]($style)"
