@@ -22,7 +22,7 @@ if status is-interactive
     ########## 缩写和别名 ##########
 
     abbr -a cpr cp -R
-    abbr -a rmr rm -RI
+    abbr -a rmr rm -RIf
     abbr -a pg pgrep -lf
 
     if command -sq bat; or command -sq batcat

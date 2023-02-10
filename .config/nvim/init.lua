@@ -353,6 +353,9 @@ require("lazy").setup({
     'tpope/vim-abolish',
     cmd = 'S',
   },
+  {
+    'gpanders/editorconfig.nvim',
+  },
   'mg979/vim-visual-multi',
   -- 其他
   {
