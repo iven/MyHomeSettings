@@ -53,6 +53,17 @@ lspconfig['clangd'].setup {
   cmd = { "clangd", "--pch-storage=memory", "-j=96" },
 }
 
+lspconfig['nil_ls'].setup {
+  capabilities = capabilities,
+  settings = {
+    ['nil'] = {
+      formatting = {
+        command = { "nixpkgs-fmt" },
+      },
+    },
+  },
+}
+
 lspconfig['sumneko_lua'].setup {
   capabilities = capabilities,
   settings = {
@@ -95,6 +106,7 @@ lspconfig['sumneko_lua'].setup {
 -- 为 LSP 浮动窗口添加边框
 -- https://vi.stackexchange.com/questions/39074/user-borders-around-lsp-floating-windows
 local _border = "single"
+local _diagnostic_format = '[%s] %s  |%s|'
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover,
@@ -117,7 +129,15 @@ require('lspconfig.ui.windows').default_options = {
 -- 输入时实时提示错误
 vim.diagnostic.config {
   update_in_insert = true,
+  virtual_text = {
+    format = function(diagnostic)
+      return string.format(_diagnostic_format, diagnostic.source, diagnostic.message, diagnostic.code)
+    end,
+  },
   float = {
     border = _border,
+    format = function(diagnostic)
+      return string.format(_diagnostic_format, diagnostic.source, diagnostic.message, diagnostic.code)
+    end,
   },
 }

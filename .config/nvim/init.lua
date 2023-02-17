@@ -387,7 +387,7 @@ require("lazy").setup({
       require('toggleterm').setup {
         open_mapping = "<c-`>",
         direction = 'float',
-        shell = 'zsh',
+        shell = 'fish',
         winbar = {
           enabled = true,
         },
